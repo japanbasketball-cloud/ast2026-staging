@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>日本代表 | AST 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F2F2F2;
+    --surface: #FFFFFF;
+    --header-bg: #1A1A1A;
+    --red: #CC0000;
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --text-dim: #999999;
+    --border: #E5E5E5;
+    --pos-pg: #2563EB; --pos-sg: #7C3AED; --pos-sf: #059669;
+    --pos-pf: #D97706; --pos-c: #DC2626;
+    --pos-g: #2563EB;  --pos-f: #059669;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; color: var(--text-primary); min-height: 100vh; }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--header-bg);
+    padding: 8px 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .japan-badge { display: flex; align-items: center; gap: 9px; }
+  .flag-circle {
+    width: 24px; height: 24px; background: white; border-radius: 50%;
+    flex-shrink: 0; position: relative;
+  }
+  .flag-circle::after {
+    content: ''; position: absolute;
+    width: 10px; height: 10px; background: var(--red); border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .header-team {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.06em;
+    color: white; text-transform: uppercase; line-height: 1.15;
+  }
+  .header-team span {
+    display: block; font-size: 8px; font-weight: 500;
+    color: rgba(255,255,255,0.45); letter-spacing: 0.14em; margin-bottom: 1px;
+  }
+  .live-dot {
+    display: flex; align-items: center; gap: 5px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: #FF4444; text-transform: uppercase;
+  }
+  .live-dot::before {
+    content: ''; width: 6px; height: 6px; background: #FF4444;
+    border-radius: 50%; animation: pulse 1.4s ease infinite; flex-shrink: 0;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.75)} }
+
+  .header-meta { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 6px; }
+  .meta-chip { font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
+  .meta-chip + .meta-chip::before { content: ' · '; opacity: 0.4; margin: 0 5px; }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .tab-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 12px 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    gap: 2px;
+    position: relative;
+    transition: background 0.15s;
+  }
+  .tab-btn:active { background: rgba(255,255,255,0.05); }
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--red);
+  }
+  .tab-label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35);
+  }
+  .tab-btn.active .tab-label { color: rgba(255,255,255,0.65); }
+  .tab-name {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.45);
+  }
+  .tab-btn.active .tab-name { color: #fff; }
+  .tab-divider { width: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
+
+  /* ── PANELS ── */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── ROSTER TABLE ── */
+  .roster-wrap {
+    background: var(--surface); margin: 12px 12px 8px;
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .roster-title-bar {
+    background: #F7F7F7; border-bottom: 2px solid #1A1A1A;
+    padding: 8px 14px 10px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .roster-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--text-primary);
+  }
+  .roster-count {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; color: var(--text-dim); font-weight: 600; letter-spacing: 0.08em;
+  }
+  .col-head {
+    display: grid;
+    grid-template-columns: 20px 1fr 34px 36px 26px 88px;
+    padding: 5px 12px 5px 10px; border-bottom: 1px solid var(--border);
+    background: #FAFAFA; gap: 3px; align-items: center;
+  }
+  .col-head span {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+    color: var(--text-dim); text-transform: uppercase;
+  }
+  .col-head span:not(:nth-child(2)) { text-align: center; }
+
+  .player-row {
+    display: grid;
+    grid-template-columns: 20px 1fr 34px 36px 26px 88px;
+    padding: 8px 12px 8px 10px; border-bottom: 1px solid var(--border);
+    align-items: center; gap: 3px; transition: background 0.1s;
+  }
+  .player-row:last-child { border-bottom: none; }
+  .player-row:active { background: #F5F5F5; }
+
+  .p-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px; font-weight: 700; color: var(--text-secondary); text-align: center;
+  }
+  .p-name { min-width: 0; }
+  .p-name-jp {
+    font-size: 12.5px; font-weight: 700; color: var(--text-primary);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3;
+  }
+  .p-name-en {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9.5px; font-weight: 500; color: var(--text-dim); letter-spacing: 0.03em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; margin-top: 1px;
+  }
+  .p-pos { display: flex; align-items: center; justify-content: center; }
+  .pos-tag {
+    display: inline-block; font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    padding: 1px 4px; border-radius: 3px; line-height: 1.4;
+  }
+  .PG { background: rgba(37,99,235,0.1);  color: var(--pos-pg); }
+  .SG { background: rgba(124,58,237,0.1); color: var(--pos-sg); }
+  .SF { background: rgba(5,150,105,0.1);  color: var(--pos-sf); }
+  .PF { background: rgba(217,119,6,0.1);  color: var(--pos-pf); }
+  .C  { background: rgba(220,38,38,0.1);  color: var(--pos-c);  }
+  .G  { background: rgba(37,99,235,0.1);  color: var(--pos-g);  }
+  .F  { background: rgba(5,150,105,0.1);  color: var(--pos-f);  }
+  .SGSF { background: rgba(124,58,237,0.1); color: var(--pos-sg); font-size: 9.5px; }
+
+  .p-ht {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px; font-weight: 600; color: var(--text-primary); text-align: center;
+  }
+  .p-grade {
+    font-size: 12px; font-weight: 500; color: var(--text-secondary);
+    text-align: center; line-height: 1.3; white-space: nowrap;
+  }
+  .p-school {
+    font-size: 11px; color: var(--text-secondary);
+    text-align: right; line-height: 1.3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  /* ── SCHEDULE ── */
+  .schedule-wrap {
+    margin: 0 12px 12px; background: var(--surface);
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .schedule-title-bar {
+    background: #F7F7F7; border-bottom: 2px solid #1A1A1A; padding: 8px 14px 10px;
+  }
+  .schedule-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--text-primary);
+  }
+  .game-row {
+    display: flex; align-items: center; padding: 8px 14px;
+    border-bottom: 1px solid var(--border); gap: 8px; flex-wrap: wrap;
+  }
+  .game-row:last-child { border-bottom: none; }
+  .game-date {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 600; color: var(--text-dim);
+    letter-spacing: 0.04em; width: 32px; flex-shrink: 0;
+  }
+  .game-flag { font-size: 15px; flex-shrink: 0; }
+  .game-opponent { flex: 1; font-size: 12.5px; font-weight: 500; color: var(--text-primary); }
+  .game-time {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; color: var(--text-dim);
+    flex-shrink: 0; text-align: right; line-height: 1.3; white-space: nowrap;
+  }
+  .game-time span { display: block; font-size: 8.5px; font-weight: 500; color: #C0C0C0; letter-spacing: 0.04em; }
+  .game-result {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 700; color: var(--text-secondary);
+    flex-shrink: 0; min-width: 52px; text-align: right;
+  }
+  .game-status {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    padding: 2px 7px; border-radius: 3px; text-transform: uppercase; flex-shrink: 0;
+  }
+  .s-win      { background: #ECFDF5; color: #059669; }
+  .s-loss     { background: #FFF1F2; color: #BE123C; }
+  .s-today    { background: #FFF7ED; color: #D97706; animation: pulse-bg 2s ease infinite; }
+  .s-upcoming { background: #EFF6FF; color: #2563EB; }
+  .s-tbd      { background: #F3F4F6; color: #6B7280; }
+  @keyframes pulse-bg { 0%,100%{opacity:1} 50%{opacity:0.65} }
+
+  .game-links { display: flex; gap: 5px; flex-shrink: 0; }
+  .btn-link {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-decoration: none; padding: 3px 7px; border-radius: 3px;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .btn-box { background: #F3F4F6; color: #374151; }
+  .btn-yt  { background: #FEE2E2; color: #B91C1C; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center; padding: 12px 16px 28px;
+    font-size: 10px; color: var(--text-dim); letter-spacing: 0.04em; line-height: 1.8;
+  }
+  .footer a { color: var(--red); text-decoration: none; }
+
+  /* ── STAFF ── */
+  .staff-wrap {
+    background: var(--surface); margin: 0 12px 12px;
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .staff-title-bar {
+    background: #F7F7F7; border-bottom: 2px solid #1A1A1A; padding: 8px 14px 10px;
+  }
+  .staff-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--text-primary);
+  }
+  .staff-row {
+    display: flex; align-items: center;
+    padding: 9px 14px; border-bottom: 1px solid var(--border); gap: 8px;
+  }
+  .staff-row:last-child { border-bottom: none; }
+  .staff-role {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 8.5px; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--red);
+    flex-shrink: 0; width: 82px; line-height: 1.3;
+    white-space: nowrap;
+  }
+  .staff-info { min-width: 0; flex: 1; }
+  .staff-name-jp {
+    font-size: 12.5px; font-weight: 700; color: var(--text-primary);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3;
+  }
+  .staff-name-en {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9.5px; font-weight: 500; color: var(--text-dim);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    line-height: 1.2; margin-top: 1px;
+  }
+  .staff-org {
+    font-size: 9.5px; color: var(--text-secondary);
+    text-align: right; line-height: 1.3;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    flex-shrink: 0; max-width: 38%;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="japan-badge">
+      <div class="flag-circle"></div>
+      <div class="header-team">
+        <span>Japan National Team</span>
+        日本代表
+      </div>
+    </div>
+    <div class="live-dot">遠征中</div>
+  </div>
+  <div class="header-meta">
+    <span class="meta-chip">31st Albert Schweitzer Tournament</span>
+    <span class="meta-chip">Mannheim, GER</span>
+    <span class="meta-chip">Apr 4–11, 2026</span>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('men', this)">
+      <span class="tab-label">U18 Men's</span>
+      <span class="tab-name">男子U18</span>
+    </button>
+    <div class="tab-divider"></div>
+    <button class="tab-btn" onclick="switchTab('women', this)">
+      <span class="tab-label">U17 Women's</span>
+      <span class="tab-name">女子U17</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ MEN'S PANEL ═══ -->
+<div id="panel-men" class="panel active">
+
+  <div class="roster-wrap">
+    <div class="roster-title-bar">
+      <span class="roster-title">Team Roster</span>
+      <span class="roster-count">14 Players</span>
+    </div>
+    <div class="col-head">
+      <span>NO.</span>
+      <span style="text-align:left">PLAYER</span>
+      <span>POS</span>
+      <span>HT</span>
+      <span>学年</span>
+      <span style="text-align:right">所属</span>
+    </div>
+    <div id="men-roster"></div>
+  </div>
+
+  <div class="schedule-wrap">
+    <div class="schedule-title-bar">
+      <span class="schedule-title">Group A — Japan Schedule</span>
+    </div>
+    <div id="men-schedule"></div>
+  </div>
+
+  <div class="staff-wrap">
+    <div class="staff-title-bar">
+      <span class="staff-title">Staff</span>
+    </div>
+    <div id="men-staff">
+      <div class="staff-row">
+        <div class="staff-role">強化部会長</div>
+        <div class="staff-info">
+          <div class="staff-name-jp">井手口 孝</div>
+          <div class="staff-name-en">IDEGUCHI, Takashi</div>
+        </div>
+        <div class="staff-org">福岡第一高等学校</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-role">チームリーダー</div>
+        <div class="staff-info">
+          <div class="staff-name-jp">大澤 徹也</div>
+          <div class="staff-name-en">OSAWA, Tetsuya</div>
+        </div>
+        <div class="staff-org">東山高等学校</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-role">ヘッドコーチ</div>
+        <div class="staff-info">
+          <div class="staff-name-jp">片峯 聡太</div>
+          <div class="staff-name-en">KATAMINE, Sota</div>
+        </div>
+        <div class="staff-org">福岡大学附属大濠高等学校</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-role">アシスタントコーチ</div>
+        <div class="staff-info">
+          <div class="staff-name-jp">濱屋 史篤</div>
+          <div class="staff-name-en">HAMAYA, Fumiatsu</div>
+        </div>
+        <div class="staff-org">北陸学院高等学校</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Source: <a href="https://ast.basketball-bund.de/team/japan/">AST公式</a> &nbsp;/&nbsp;
+    <a href="https://www.japanbasketball.jp/">JBA</a>
+  </div>
+</div>
+
+<!-- ═══ WOMEN'S PANEL ═══ -->
+<div id="panel-women" class="panel">
+
+  <div class="roster-wrap">
+    <div class="roster-title-bar">
+      <span class="roster-title">Team Roster</span>
+      <span class="roster-count">14 Players</span>
+    </div>
+    <div class="col-head">
+      <span>NO.</span>
+      <span style="text-align:left">PLAYER</span>
+      <span>POS</span>
+      <span>HT</span>
+      <span>学年</span>
+      <span style="text-align:right">所属</span>
+    </div>
+    <div id="women-roster"></div>
+  </div>
+
+  <div class="schedule-wrap">
+    <div class="schedule-title-bar">
+      <span class="schedule-title">4 Nations — Japan Schedule</span>
+    </div>
+    <div id="women-schedule"></div>
+  </div>
+
+  <div class="staff-wrap">
+    <div class="staff-title-bar">
+      <span class="staff-title">Staff</span>
+    </div>
+    <div id="women-staff">
+      <div class="staff-row">
+        <div class="staff-role">チームリーダー</div>
+        <div class="staff-info">
+          <div class="staff-name-jp">小野 裕</div>
+          <div class="staff-name-en">ONO, Yutaka</div>
+        </div>
+        <div class="staff-org">聖和学園高校</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-role">ヘッドコーチ</div>
+        <div class="staff-info">
+          <div class="staff-name-jp">鈴木 良和</div>
+          <div class="staff-name-en">SUZUKI, Yoshikazu</div>
+        </div>
+        <div class="staff-org">JBA / 株式会社ERUTLUC</div>
+      </div>
+      <div class="staff-row">
+        <div class="staff-role">アシスタントコーチ</div>
+        <div class="staff-info">
+          <div class="staff-name-jp">稲垣 愛</div>
+          <div class="staff-name-en">INAGAKI, Ai</div>
+        </div>
+        <div class="staff-org">四日市メリノール学院中</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Source: <a href="https://www.japanbasketball.jp/japan/85839">JBA公式</a> &nbsp;/&nbsp;
+    <a href="https://ast.basketball-bund.de/">AST公式</a>
+  </div>
+</div>
+
+<script>
+// ── TAB SWITCH ──
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── RENDER HELPER ──
+function renderRoster(elId, players) {
+  const sorted = [...players].sort((a, b) => a.num - b.num);
+  document.getElementById(elId).innerHTML = sorted.map(p => `
+    <div class="player-row">
+      <div class="p-num">${p.num}</div>
+      <div class="p-name">
+        <div class="p-name-jp">${p.nameJp}</div>
+        <div class="p-name-en">${p.nameEn}</div>
+      </div>
+      <div class="p-pos"><span class="pos-tag ${p.posClass}">${p.pos}</span></div>
+      <div class="p-ht">${p.ht}</div>
+      <div class="p-grade">${p.grade}</div>
+      <div class="p-school">${p.school}</div>
+    </div>
+  `).join('');
+}
+
+function renderSchedule(elId, schedule) {
+  document.getElementById(elId).innerHTML = schedule.map(g => `
+    <div class="game-row">
+      <span class="game-date">${g.date}</span>
+      <span class="game-flag">${g.flag}</span>
+      <span class="game-opponent">${g.opp}</span>
+      ${g.jst ? `<span class="game-time">${g.jst}<span>JST</span></span>` : ''}
+      ${g.score
+        ? `<span class="game-result">${g.score}</span>`
+        : `<span class="game-status ${g.status}">${g.label}</span>`
+      }
+      <span class="game-links">
+        ${g.box ? `<a class="btn-link btn-box" href="${g.box}" target="_blank">📊 BOX</a>` : ''}
+        <a class="btn-link btn-yt" href="${g.yt}" target="_blank">▶ YT</a>
+      </span>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════
+// ── MEN'S DATA ──
+// ═══════════════════════════
+const menPlayers = [
+  { num:4,  nameJp:'今野 瑛心',                   nameEn:'KONNO, Eishin',            pos:'PF',    posClass:'PF',   ht:'192', grade:'高3', school:'仙台大明成' },
+  { num:5,  nameJp:'恒岡 ケイマン',               nameEn:'TSUNEOKA, Cayman',         pos:'PF',    posClass:'PF',   ht:'196', grade:'高3', school:'開志国際' },
+  { num:6,  nameJp:'トンプソン ヨセフ ハサン',    nameEn:'THOMPSON, Yousef Hasan',   pos:'SG',    posClass:'SG',   ht:'184', grade:'高3', school:'福岡第一' },
+  { num:7,  nameJp:'櫻井 照大',                   nameEn:'SAKURAI, Tetta',           pos:'PG',    posClass:'PG',   ht:'180', grade:'高3', school:'福岡大大濠' },
+  { num:9,  nameJp:'音山 繋太',                   nameEn:'OTOYAMA, Keita',           pos:'SF',    posClass:'SF',   ht:'196', grade:'高3', school:'中部大第一' },
+  { num:10, nameJp:'マクミラン アレックス',       nameEn:'MCMILLAN, Alex',           pos:'PF',    posClass:'PF',   ht:'198', grade:'高3', school:'沖縄水産' },
+  { num:11, nameJp:'髙橋 歩路',                   nameEn:'TAKAHASHI, Aru',           pos:'SG/SF', posClass:'SGSF', ht:'187', grade:'高3', school:'開志国際' },
+  { num:12, nameJp:'藤原 弘大',                   nameEn:'FUJIWARA, Hiromasa',       pos:'SG',    posClass:'SG',   ht:'180', grade:'高3', school:'北陸学院' },
+  { num:13, nameJp:'本田 蕗以',                   nameEn:'HONDA, Roi',               pos:'SF',    posClass:'SF',   ht:'189', grade:'高3', school:'福岡大大濠' },
+  { num:14, nameJp:'ベネディクト 研一郎',         nameEn:'BENEDICT, Kenichiro',      pos:'SF',    posClass:'SF',   ht:'196', grade:'高3', school:"St. George's" },
+  { num:15, nameJp:'白谷 柱誠ジャック',           nameEn:'SHIRATANI, Chuson Jack',   pos:'PF',    posClass:'PF',   ht:'194', grade:'高2', school:'福岡大大濠' },
+  { num:16, nameJp:'中村 文哉',                   nameEn:'NAKAMURA, Fumiya',         pos:'SF',    posClass:'SF',   ht:'190', grade:'高3', school:'福岡大大濠' },
+  { num:17, nameJp:'池田 楓真',                   nameEn:'IKEDA, Fuma',              pos:'PG',    posClass:'PG',   ht:'172', grade:'高3', school:'開志国際' },
+  { num:18, nameJp:'イヘツ グットラックチネドゥ', nameEn:'IHETSU, Goodluck Chinedu', pos:'SF',    posClass:'SF',   ht:'195', grade:'高2', school:'開志国際' },
+];
+
+const YT = 'https://youtube.com/@dbb_basketball';
+const menSchedule = [
+  { date:'4/4',  flag:'🇸🇮', opp:'vs スロベニア',      score:'86 - 94', status:'s-loss',     label:'LOSS',     jst:'23:00',   box:'boxscore/20260404_SLO.html', yt:YT },
+  { date:'4/5',  flag:'🇹🇷', opp:'vs トルコ',          score:'66 - 78', status:'s-loss',     label:'LOSS',     jst:'22:00',   box:'boxscore/20260405_TUR.html', yt:YT },
+  { date:'4/6',  flag:'🇸🇪', opp:'vs スウェーデン',    score:'97 - 84', status:'s-win',      label:'WIN',      jst:'22:00',   box:'boxscore/20260406_SWE.html', yt:YT },
+  { date:'4/8',  flag:'🇧🇭', opp:'vs バーレーン',      score:null,      status:'s-upcoming', label:'UPCOMING', jst:'22:15',   box:null, yt:YT },
+  { date:'4/9',  flag:'🇩🇪', opp:'vs ドイツ',          score:null,      status:'s-upcoming', label:'UPCOMING', jst:'翌 3:00', box:null, yt:YT },
+  { date:'4/10', flag:'🏆',  opp:'順位決定戦・準決勝', score:null,      status:'s-tbd',      label:'TBD',      jst:null,      box:null, yt:YT },
+  { date:'4/11', flag:'🏅',  opp:'順位決定戦・決勝',   score:null,      status:'s-tbd',      label:'TBD',      jst:null,      box:null, yt:YT },
+];
+
+// ═══════════════════════════
+// ── WOMEN'S DATA ──
+// ═══════════════════════════
+const womenPlayers = [
+  { num:6,  nameJp:'小林 蘭',    nameEn:'KOBAYASHI, Ran',   pos:'F', posClass:'F', ht:'174', grade:'高2', school:'四日市メリノール' },
+  { num:7,  nameJp:'清水 天翔',  nameEn:'SHIMIZU, Tenka',   pos:'C', posClass:'C', ht:'181', grade:'高3', school:'佼成学園女子' },
+  { num:11, nameJp:'加地 百花',  nameEn:'KAJI, Momoka',     pos:'F', posClass:'F', ht:'170', grade:'高2', school:'桜花学園' },
+  { num:13, nameJp:'権藤 寧々',  nameEn:'GONDO, Nene',      pos:'G', posClass:'G', ht:'167', grade:'高3', school:'聖カタリナ' },
+  { num:14, nameJp:'大槻 佳子',  nameEn:'OTSUKI, Yoshiko',  pos:'G', posClass:'G', ht:'163', grade:'高2', school:'大阪薫英' },
+  { num:15, nameJp:'竹内 みや',  nameEn:'TAKEUCHI, Miya',   pos:'G', posClass:'G', ht:'161', grade:'高3', school:'桜花学園' },
+  { num:16, nameJp:'安藤 玲',    nameEn:'ANDO, Rei',        pos:'F', posClass:'F', ht:'180', grade:'高3', school:'鳥取城北' },
+  { num:18, nameJp:'難波 絵愛',  nameEn:'NAMBA, Emana',     pos:'G', posClass:'G', ht:'170', grade:'高1', school:'桜花学園' },
+  { num:20, nameJp:'中澤 希乃',  nameEn:'NAKAZAWA, Kino',   pos:'F', posClass:'F', ht:'176', grade:'高2', school:'昭和学院' },
+  { num:31, nameJp:'伊藤 千寛',  nameEn:'ITO, Chihiro',     pos:'F', posClass:'F', ht:'172', grade:'高3', school:'四日市メリノール' },
+  { num:39, nameJp:'渡邉 瑠花',  nameEn:'WATANABE, Ruka',   pos:'F', posClass:'F', ht:'176', grade:'高2', school:'県立山形中央' },
+  { num:48, nameJp:'安井 穂香',  nameEn:'YASUI, Honoka',    pos:'G', posClass:'G', ht:'168', grade:'高1', school:'四日市メリノール' },
+  { num:71, nameJp:'石綿 文',    nameEn:'ISHIWATA, Aya',    pos:'C', posClass:'C', ht:'185', grade:'高2', school:'京都精華学園' },
+  { num:72, nameJp:'今井 優蕾',  nameEn:'IMAI, Yura',       pos:'C', posClass:'C', ht:'178', grade:'高2', school:'大阪薫英' },
+];
+
+// JBA公式発表の日本時間をそのまま使用
+const womenSchedule = [
+  { date:'4/8',  flag:'🇮🇹', opp:'vs イタリア',  score:null, status:'s-upcoming', label:'UPCOMING', jst:'22:30',   box:null, yt:YT },
+  { date:'4/9',  flag:'🇩🇪', opp:'vs ドイツ',    score:null, status:'s-upcoming', label:'UPCOMING', jst:'翌 0:45', box:null, yt:YT },
+  { date:'4/10', flag:'🇷🇸', opp:'vs セルビア',  score:null, status:'s-upcoming', label:'UPCOMING', jst:'翌 3:00', box:null, yt:YT },
+];
+
+// ── INIT ──
+renderRoster('men-roster', menPlayers);
+renderSchedule('men-schedule', menSchedule);
+renderRoster('women-roster', womenPlayers);
+renderSchedule('women-schedule', womenSchedule);
+
+// ═══════════════════════════
+// ── STAFF DATA ──
+// ═══════════════════════════
+const menStaff = [
+  { role: '強化部会長',       nameJp: '井手口 孝',   nameEn: 'IDEGUCHI, Takashi',   org: '福岡第一高等学校' },
+  { role: 'チームリーダー',   nameJp: '大澤 徹也',   nameEn: 'OSAWA, Tetsuya',      org: '東山高等学校' },
+  { role: 'ヘッドコーチ',     nameJp: '片峯 聡太',   nameEn: 'KATAMINE, Sota',      org: '福岡大学附属大濠高等学校' },
+  { role: 'アシスタントコーチ', nameJp: '濱屋 史篤', nameEn: 'HAMAYA, Fumiatsu',    org: '北陸学院高等学校' },
+];
+
+const womenStaff = [
+  { role: 'チームリーダー',   nameJp: '小野 裕',     nameEn: 'ONO, Yutaka',         org: '聖和学園高校' },
+  { role: 'ヘッドコーチ',     nameJp: '鈴木 良和',   nameEn: 'SUZUKI, Yoshikazu',   org: 'JBA / 株式会社ERUTLUC' },
+  { role: 'アシスタントコーチ', nameJp: '稲垣 愛',   nameEn: 'INAGAKI, Ai',         org: '四日市メリノール学院中' },
+];
+
+function renderStaff(elId, staffList) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  el.innerHTML = staffList.map(s => `
+    <div class="staff-row">
+      <div class="staff-role">${s.role}</div>
+      <div class="staff-info">
+        <div class="staff-name-jp">${s.nameJp}</div>
+        <div class="staff-name-en">${s.nameEn}</div>
+      </div>
+      <div class="staff-org">${s.org}</div>
+    </div>
+  `).join('');
+}
+
+renderStaff('men-staff', menStaff);
+renderStaff('women-staff', womenStaff);
+</script>
+</body>
+</html>

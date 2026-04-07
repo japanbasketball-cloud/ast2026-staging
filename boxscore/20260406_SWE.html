@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>JPN 86 - 94 SLO | AST 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F4F4;
+    --white: #FFFFFF;
+    --border: #E0E0E0;
+    --border-dark: #CACACA;
+    --text-primary: #111111;
+    --text-dim: #888888;
+    --text-link: #0066CC;
+    --header-bg: #1A1A1A;
+    --section-bg: #F0F0F0;
+    --section-text: #555555;
+    --cell-h: 27px;
+    --sec-h: 22px;
+    --fix-w: 135px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--bg);
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-bottom: 50px;
+    min-height: 100vh;
+  }
+
+  /* ══════════════════════════════
+     GAME HEADER (sticky)
+  ══════════════════════════════ */
+  /* ── GAME HEADER (sticky) ── */
+  .game-header {
+    background: var(--header-bg);
+    position: sticky; top: 0; z-index: 100;
+  }
+  /* 1行目: NBA準拠スコアバー */
+  .score-bar {
+    display: flex; align-items: center;
+    padding: 10px 14px 8px;
+    gap: 0;
+  }
+  .back-btn {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 20px; line-height: 1;
+    flex-shrink: 0; margin-right: auto;
+  }
+  /* スコアエリア全体を中央に固定幅で配置 */
+  .score-area {
+    display: flex; align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 0;
+  }
+  /* 左右チーム */
+  .score-team {
+    display: flex; align-items: center;
+    gap: 6px; width: 120px;
+    justify-content: flex-end;
+  }
+  .score-team.right {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  .team-flag { font-size: 20px; line-height: 1; flex-shrink: 0; }
+  .team-info {
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 0;
+    flex-shrink: 0;
+  }
+  .score-team.right .team-info { align-items: flex-end; }
+  .team-abbr {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.6); line-height: 1;
+    text-transform: uppercase;
+  }
+  .team-record {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9px; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em; line-height: 1.2;
+  }
+  .team-score {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 40px; font-weight: 700; line-height: 1;
+    color: white; letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+  .team-score.loser { color: rgba(255,255,255,0.45); }
+  /* 中央: FINAL */
+  .score-center {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex-shrink: 0; padding: 0 8px; gap: 2px;
+  }
+  .final-badge {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+  }
+  .game-period {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9px; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+  }
+  /* 2行目: 大会情報 */
+  .game-meta-bar {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 14px 7px;
+    gap: 6px;
+  }
+  .game-meta {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+  .meta-dot { color: rgba(255,255,255,0.2); font-size: 8px; }
+
+  /* ══════════════════════════════
+     QUARTER SCORES
+  ══════════════════════════════ */
+  .quarters-wrap {
+    background: var(--white);
+    margin: 10px 12px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .section-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--text-dim); text-transform: uppercase;
+    padding: 6px 14px;
+    background: #FAFAFA;
+    border-bottom: 1px solid var(--border);
+  }
+  .q-table {
+    width: 100%; border-collapse: collapse;
+  }
+  .q-table th {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--text-dim); text-align: center;
+    padding: 5px 0; border-bottom: 1px solid var(--border);
+    border-right: 1px solid rgba(0,0,0,0.06);
+  }
+  .q-table th:first-child { text-align: left; padding-left: 14px; width: 90px; border-right: 1px solid rgba(0,0,0,0.1); }
+  .q-table th:last-child { border-right: none; }
+  .q-table td {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--text-primary); text-align: center;
+    padding: 7px 0; border-bottom: 1px solid var(--border);
+    border-right: 1px solid rgba(0,0,0,0.06);
+  }
+  .q-table tr:last-child td { border-bottom: none; }
+  .q-table td:first-child { text-align: left; padding-left: 12px; font-size: 13px; border-right: 1px solid rgba(0,0,0,0.1); }
+  .q-table td:last-child { border-right: none; }
+  .q-table td.total { font-size: 17px; font-weight: 700; }
+  .q-table td.loser-score { color: rgba(0,0,0,0.35); }
+
+  /* ══════════════════════════════
+     BOX SCORE
+  ══════════════════════════════ */
+  .box-wrap {
+    margin: 10px 0 0;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .box-label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--text-dim); text-transform: uppercase;
+    padding: 6px 14px;
+    background: #FAFAFA;
+    border-bottom: 1px solid var(--border);
+  }
+  .box-scroll {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+  .box-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: max-content;
+  }
+
+  /* Fixed left column */
+  .fix {
+    position: sticky; left: 0; z-index: 3;
+    width: var(--fix-w); min-width: var(--fix-w);
+    border-right: 1px solid var(--border-dark);
+  }
+
+  /* Section header rows (先発・控え) */
+  .sec-row td {
+    height: var(--sec-h);
+    background: var(--section-bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .sec-row td.fix {
+    background: var(--section-bg);
+    z-index: 4;
+  }
+  .sec-fix-inner {
+    display: flex; align-items: center;
+    height: var(--sec-h); padding: 0 10px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 10px; font-weight: 700;
+    color: var(--section-text);
+  }
+  .sec-stat {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    color: var(--text-dim); text-align: right;
+    width: 38px; min-width: 38px;
+    padding-right: 5px;
+  }
+
+  /* Player rows */
+  .p-row td {
+    height: var(--cell-h);
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+  }
+  .p-row td.fix { background: var(--white); z-index: 4; }
+  .p-row:last-child td { border-bottom: none; }
+  .p-row:active td { background: #F8F8F8; }
+  .p-row:active td.fix { background: #F8F8F8; }
+
+  /* Fixed cell inner layout */
+  .fix-inner {
+    display: flex; align-items: center; gap: 4px;
+    height: var(--cell-h); padding: 0 8px;
+  }
+  .p-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; color: var(--text-dim);
+    min-width: 18px; flex-shrink: 0; text-align: center;
+  }
+  .p-name {
+    font-size: 11.5px; font-weight: 700;
+    color: var(--text-primary);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    flex: 1;
+  }
+  .p-pos {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9.5px; font-weight: 600; color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  /* Stat cells */
+  .s {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-primary); text-align: right;
+    width: 38px; min-width: 38px;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-right: 5px;
+  }
+  .s-pts { font-weight: 700; color: #111; }
+  .s-dim { color: #AAA; }
+  .pm-p { color: #059669; }
+  .pm-n { color: #CC0000; }
+  .pm-z { color: var(--text-dim); }
+
+  /* DNP row */
+  .dnp-row td {
+    height: var(--cell-h);
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+  }
+  .dnp-row td.fix { background: var(--white); z-index: 4; }
+  .dnp-cell {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    color: var(--text-dim); vertical-align: middle;
+    padding-left: 8px;
+  }
+
+  /* ══════════════════════════════
+     BOTTOM TEAM SWITCHER
+  ══════════════════════════════ */
+  .team-switcher {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+    display: flex; height: 48px;
+    background: var(--white);
+    border-top: 1px solid var(--border-dark);
+  }
+  .t-btn {
+    flex: 1; border: none; background: none; cursor: pointer;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--text-dim);
+    transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .t-btn.active { background: var(--header-bg); color: white; }
+  .t-btn:not(.active):active { background: #EFEFEF; }
+  .t-flag { font-size: 15px; }
+
+  /* ── CIRCULAR FLAG ── */
+  .flag-circle-img {
+    width: 26px; height: 26px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* ── TOTALS ROW ── */
+  .totals-row td {
+    height: 28px;
+    background: #F7F7F7;
+    border-top: 2px solid var(--border-dark);
+  }
+  .totals-row td.fix { background: #F7F7F7; z-index: 4; }
+  .totals-fix-inner {
+    display: flex; align-items: center;
+    height: 28px; padding: 0 8px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--text-primary);
+  }
+  .s-tot {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 700;
+    color: var(--text-primary); text-align: right;
+    width: 38px; min-width: 38px;
+    white-space: nowrap; vertical-align: middle;
+    padding-right: 5px;
+  }
+</style>
+</head>
+
+<!-- GAME HEADER -->
+<div class="game-header">
+  <div class="score-bar">
+    <a href="../ast2026_japan.html" class="back-btn">←</a>
+    <div class="score-area">
+      <div class="score-team left">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTUiIGN5PSIxMCIgcj0iNiIgZmlsbD0iI2JjMDAyZCIvPjwvc3ZnPg==" class="flag-circle-img" alt="JPN">
+        <div class="team-info">
+          <span class="team-abbr">JPN</span>
+          <span class="team-record">U18 Men's</span>
+        </div>
+        <span class="team-score">97</span>
+      </div>
+      <div class="score-center">
+        <span class="final-badge">FINAL</span>
+        <span class="game-period">4Q</span>
+      </div>
+      <div class="score-team right">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA2QUE3Ii8+PHJlY3QgeD0iOSIgd2lkdGg9IjQiIGhlaWdodD0iMjAiIGZpbGw9IiNGRUNDMDAiLz48cmVjdCB5PSI4IiB3aWR0aD0iMzAiIGhlaWdodD0iNCIgZmlsbD0iI0ZFQ0MwMCIvPjwvc3ZnPg==" class="flag-circle-img" alt="SWE">
+        <div class="team-info">
+          <span class="team-abbr">SWE</span>
+          <span class="team-record">U18 Men's</span>
+        </div>
+        <span class="team-score loser">84</span>
+      </div>
+    </div>
+  </div>
+  <div class="game-meta-bar">
+    <span class="game-meta">Apr 6, 2026</span>
+    <span class="meta-dot">·</span>
+    <span class="game-meta">Group A</span>
+    <span class="meta-dot">·</span>
+    <span class="game-meta">Albert Schweitzer Tournament</span>
+  </div>
+</div>
+
+<!-- QUARTER SCORES -->
+<div class="quarters-wrap">
+  <div class="section-title">RUNNING SCORE</div>
+  <table class="q-table">
+    <thead>
+      <tr><th></th><th>1Q</th><th>2Q</th><th>3Q</th><th>4Q</th><th>T</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🇯🇵 JPN</td>
+        <td>25</td><td>22</td><td>23</td><td>27</td>
+        <td class="total">97</td>
+      </tr>
+      <tr>
+        <td>🇸🇪 SWE</td>
+        <td>33</td><td>20</td><td>11</td><td>20</td>
+        <td class="total loser-score">84</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BOX SCORE -->
+<div class="box-wrap">
+  <div class="box-label">BOX SCORE</div>
+  <div class="box-scroll">
+    <table class="box-table" id="box-table"></table>
+  </div>
+</div>
+
+<!-- BOTTOM SWITCHER -->
+<div class="team-switcher">
+  <button class="t-btn active" onclick="switchTeam('jpn', this)">
+    <span class="t-flag">🇯🇵</span> JPN
+  </button>
+  <button class="t-btn" onclick="switchTeam('swe', this)">
+    <span class="t-flag">🇸🇪</span> SWE
+  </button>
+</div>
+
+<script>
+const COLS = ['MIN','PTS','REB','AST','STL','BLK','FGM','FGA','FG%','3PM','3PA','3P%','FTM','FTA','FT%','OREB','DREB','TOV','PF','+/-'];
+
+function pct(v) { return v === null ? '-' : v.toFixed(1); }
+function pm(v)  { return v > 0 ? '+' + v : String(v); }
+function pmCls(v) { return v > 0 ? 'pm-p' : v < 0 ? 'pm-n' : 'pm-z'; }
+function formatMin(m) {
+  if (!m || m === '-') return m;
+  const p = m.split(':');
+  return p[0].padStart(2,'0') + ':' + (p[1]||'00');
+}
+function vals(p) {
+  return [
+    formatMin(p.min), p.pts, p.reb, p.ast, p.stl, p.blk,
+    p.fgm, p.fga, pct(p.fg),
+    p.tpm, p.tpa, pct(p.tp),
+    p.ftm, p.fta, pct(p.ft),
+    p.oreb, p.dreb, p.tov, p.pf, pm(p.pm)
+  ];
+}
+function cls(i, p) {
+  if (i === 1)  return 's s-pts';
+  if (i === 19) return `s ${pmCls(p.pm)}`;
+  return 's';
+}
+function secRow(label) {
+  return `<tr class="sec-row"><td class="fix"><div class="sec-fix-inner">${label}</div></td>${COLS.map(c=>`<td class="sec-stat">${c}</td>`).join('')}</tr>`;
+}
+function playerRow(p) {
+  if (p.dnp) return `<tr class="dnp-row"><td class="fix"><div class="fix-inner"><span class="p-num">${p.num}</span><span class="p-name">${p.name}</span><span class="p-pos">${p.pos}</span></div></td><td class="dnp-cell" colspan="${COLS.length}">DNP</td></tr>`;
+  const v = vals(p);
+  return `<tr class="p-row"><td class="fix"><div class="fix-inner"><span class="p-num">${p.num}</span><span class="p-name">${p.name}</span><span class="p-pos">${p.pos}</span></div></td>${v.map((x,i)=>`<td class="${cls(i,p)}">${x}</td>`).join('')}</tr>`;
+}
+
+// ── JAPAN ──
+const jpnStarters = [
+  { num:7,  name:'櫻井',         pos:'PG',    min:'21:37', pts:7,  reb:3, ast:4, stl:1, blk:0, fgm:3, fga:4,  fg:75.0,  tpm:0, tpa:0, tp:null,  ftm:1, fta:2, ft:50.0,  oreb:2, dreb:1, tov:1, pf:4, pm:14 },
+  { num:10, name:'マクミラン',   pos:'PF',    min:'22:50', pts:8,  reb:9, ast:2, stl:1, blk:0, fgm:3, fga:6,  fg:50.0,  tpm:0, tpa:1, tp:0.0,   ftm:2, fta:4, ft:50.0,  oreb:4, dreb:5, tov:0, pf:1, pm:6  },
+  { num:11, name:'髙橋',         pos:'SG/SF', min:'30:51', pts:17, reb:2, ast:0, stl:0, blk:0, fgm:5, fga:5,  fg:100.0, tpm:4, tpa:4, tp:100.0, ftm:3, fta:3, ft:100.0, oreb:0, dreb:2, tov:1, pf:2, pm:12 },
+  { num:14, name:'ベネディクト', pos:'SF',    min:'29:29', pts:22, reb:8, ast:1, stl:2, blk:3, fgm:9, fga:22, fg:40.9,  tpm:1, tpa:4, tp:25.0,  ftm:3, fta:5, ft:60.0,  oreb:3, dreb:5, tov:1, pf:2, pm:10 },
+  { num:15, name:'白谷',         pos:'PF',    min:'22:18', pts:18, reb:5, ast:3, stl:2, blk:2, fgm:7, fga:12, fg:58.3,  tpm:1, tpa:2, tp:50.0,  ftm:3, fta:4, ft:75.0,  oreb:1, dreb:4, tov:1, pf:3, pm:13 },
+];
+const jpnBench = [
+  { num:4,  name:'今野',        pos:'PF',  min:'16:40', pts:6,  reb:3, ast:0, stl:2, blk:0, fgm:2, fga:5,  fg:40.0,  tpm:0, tpa:1, tp:0.0,   ftm:2, fta:2, ft:100.0, oreb:0, dreb:3, tov:1, pf:0, pm:5  },
+  { num:5,  name:'恒岡',        pos:'PF',  min:'17:05', pts:8,  reb:7, ast:0, stl:1, blk:0, fgm:3, fga:5,  fg:60.0,  tpm:0, tpa:0, tp:null,  ftm:2, fta:2, ft:100.0, oreb:3, dreb:4, tov:0, pf:1, pm:7  },
+  { num:6,  name:'トンプソン',  pos:'SG',  min:'26:04', pts:6,  reb:3, ast:0, stl:1, blk:0, fgm:3, fga:12, fg:25.0,  tpm:0, tpa:3, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:1, dreb:2, tov:2, pf:4, pm:9  },
+  { num:9,  name:'音山',        pos:'SF',  min:'6:31',  pts:2,  reb:1, ast:0, stl:0, blk:0, fgm:1, fga:3,  fg:33.3,  tpm:0, tpa:2, tp:0.0,   ftm:0, fta:1, ft:0.0,   oreb:1, dreb:0, tov:0, pf:0, pm:-6 },
+  { num:16, name:'中村',        pos:'SF',  min:'5:15',  pts:3,  reb:1, ast:0, stl:1, blk:0, fgm:1, fga:1,  fg:100.0, tpm:1, tpa:1, tp:100.0, ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:0, pf:1, pm:-3 },
+  { num:17, name:'池田',        pos:'PG',  min:'0:55',  pts:0,  reb:0, ast:0, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:1, pf:1, pm:-2 },
+  { num:12, name:'藤原',        pos:'SG',  dnp:true },
+  { num:13, name:'本田',        pos:'SF',  dnp:true },
+  { num:18, name:'イヘツ',      pos:'SF',  dnp:true },
+];
+
+// ── SWEDEN ──
+const sweStarters = [
+  { num:6,  name:'M.Berglund',  pos:'SG', min:'28:48', pts:28, reb:2,  ast:3, stl:0, blk:0, fgm:10, fga:16, fg:62.5,  tpm:5, tpa:6, tp:83.3, ftm:3, fta:4, ft:75.0, oreb:1, dreb:1, tov:7, pf:0, pm:-15 },
+  { num:10, name:'F.Karlsson',  pos:'PG', min:'21:25', pts:10, reb:5,  ast:3, stl:0, blk:1, fgm:4,  fga:6,  fg:66.7,  tpm:1, tpa:3, tp:33.3, ftm:1, fta:1, ft:100.0,oreb:1, dreb:4, tov:1, pf:1, pm:9  },
+  { num:13, name:'N.Kartal',    pos:'SF', min:'21:34', pts:6,  reb:5,  ast:2, stl:1, blk:0, fgm:3,  fga:4,  fg:75.0,  tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null, oreb:2, dreb:3, tov:0, pf:3, pm:3  },
+  { num:15, name:'B.Ottosson',  pos:'PF', min:'22:29', pts:10, reb:5,  ast:1, stl:0, blk:1, fgm:4,  fga:7,  fg:57.1,  tpm:2, tpa:2, tp:100.0,ftm:0, fta:0, ft:null, oreb:2, dreb:3, tov:2, pf:3, pm:-9 },
+  { num:20, name:'M.Odinks',    pos:'PF', min:'33:42', pts:16, reb:4,  ast:3, stl:0, blk:1, fgm:4,  fga:14, fg:28.6,  tpm:3, tpa:8, tp:37.5, ftm:3, fta:4, ft:75.0, oreb:0, dreb:4, tov:3, pf:4, pm:-13 },
+];
+const sweBench = [
+  { num:5,  name:'S.Johansson', pos:'PF', min:'17:31', pts:6,  reb:1,  ast:2, stl:0, blk:0, fgm:2,  fga:4,  fg:50.0,  tpm:0, tpa:0, tp:null, ftm:2, fta:6, ft:33.3, oreb:0, dreb:1, tov:1, pf:1, pm:-3 },
+  { num:9,  name:'L.Novakovic', pos:'SG', min:'13:05', pts:0,  reb:0,  ast:2, stl:1, blk:0, fgm:0,  fga:3,  fg:0.0,   tpm:0, tpa:3, tp:0.0,  ftm:0, fta:0, ft:null, oreb:0, dreb:0, tov:0, pf:3, pm:0  },
+  { num:11, name:'N.Rask',      pos:'SF', min:'20:34', pts:6,  reb:6,  ast:0, stl:0, blk:0, fgm:1,  fga:6,  fg:16.7,  tpm:1, tpa:4, tp:25.0, ftm:3, fta:4, ft:75.0, oreb:1, dreb:5, tov:2, pf:2, pm:-5 },
+  { num:22, name:'I.Kamara',    pos:'PF', min:'7:58',  pts:2,  reb:3,  ast:0, stl:0, blk:0, fgm:1,  fga:1,  fg:100.0, tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null, oreb:2, dreb:1, tov:0, pf:0, pm:-2 },
+  { num:7,  name:'M.Bajic',     pos:'PG', min:'2:46',  pts:0,  reb:0,  ast:1, stl:1, blk:0, fgm:0,  fga:0,  fg:null,  tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null, oreb:0, dreb:0, tov:0, pf:0, pm:-6 },
+  { num:8,  name:'L.Veller',    pos:'SF', min:'2:58',  pts:0,  reb:0,  ast:0, stl:0, blk:1, fgm:0,  fga:1,  fg:0.0,   tpm:0, tpa:1, tp:0.0,  ftm:0, fta:0, ft:null, oreb:0, dreb:0, tov:0, pf:0, pm:-9 },
+  { num:23, name:'J.Keita',     pos:'SF', min:'6:45',  pts:0,  reb:2,  ast:0, stl:0, blk:0, fgm:0,  fga:2,  fg:0.0,   tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null, oreb:0, dreb:2, tov:0, pf:0, pm:-15 },
+];
+
+function totalsRow(tot) {
+  const v = ['-', tot.pts, tot.reb, tot.ast, tot.stl, tot.blk, tot.fgm, tot.fga, tot.fg.toFixed(1), tot.tpm, tot.tpa, tot.tp.toFixed(1), tot.ftm, tot.fta, tot.ft.toFixed(1), tot.oreb, tot.dreb, tot.tov, tot.pf, '-'];
+  return `<tr class="totals-row"><td class="fix"><div class="totals-fix-inner">TOTALS</div></td>${v.map(x=>`<td class="s-tot">${x}</td>`).join('')}</tr>`;
+}
+function render(starters, bench, tot) {
+  const sorted = [...bench].sort((a,b) => (a.dnp ? 1 : 0) - (b.dnp ? 1 : 0));
+  const t = document.getElementById('box-table');
+  let h = '<tbody>';
+  h += secRow('スターティング5');
+  starters.forEach(p => h += playerRow(p));
+  h += secRow('ベンチメンバー');
+  sorted.forEach(p => h += playerRow(p));
+  h += totalsRow(tot);
+  h += '</tbody>';
+  t.innerHTML = h;
+}
+
+const jpnTot = { pts:97, reb:42, ast:10, stl:11, blk:5, fgm:30, fga:57, fg:52.6, tpm:7, tpa:18, tp:38.9, ftm:16, fta:23, ft:69.6, oreb:15, dreb:27, tov:8,  pf:19 };
+const sweTot = { pts:84, reb:33, ast:17, stl:3,  blk:3, fgm:18, fga:37, fg:48.6, tpm:12,tpa:27, tp:44.4, ftm:12, fta:19, ft:63.2, oreb:9,  dreb:24, tov:16, pf:17 };
+
+function switchTeam(team, btn) {
+  document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render(team === 'jpn' ? jpnStarters : sweStarters,
+         team === 'jpn' ? jpnBench    : sweBench,
+         team === 'jpn' ? jpnTot      : sweTot);
+}
+render(jpnStarters, jpnBench, jpnTot);
+</script>
+</body>
+</html>

@@ -183,7 +183,7 @@
   .C  { background: rgba(220,38,38,0.1);  color: var(--pos-c);  }
   .G  { background: rgba(37,99,235,0.1);  color: var(--pos-g);  }
   .F  { background: rgba(5,150,105,0.1);  color: var(--pos-f);  }
-  .SGSF { background: rgba(124,58,237,0.1); color: var(--pos-sg); font-size: 9.5px; }
+  .SGSF { background: rgba(124,58,237,0.1); color: var(--p/s-sg); font-size: 9.5px; }
 
   .p-ht {
     font-family: 'Roboto Condensed', sans-serif;
@@ -382,7 +382,7 @@
           <div class="staff-name-jp">井手口 孝</div>
           <div class="staff-name-en">IDEGUCHI, Takashi</div>
         </div>
-        <div class="staff-org">福岡第一高等学校</div>
+        <div class="staff-org">福岡第$��高等学校</div>
       </div>
       <div class="staff-row">
         <div class="staff-role">チームリーダー</div>
@@ -521,7 +521,7 @@ function renderSchedule(elId, schedule) {
         : `<span class="game-status ${g.status}">${g.label}</span>`
       }
       <span class="game-links">
-        ${g.box ? `<a class="btn-link btn-box" href="${g.box}" target="_blank">📊 BOX</a>` : ''}
+        ${g.box ? `<a class="btn-link btn-box" href="${g.box}">📊 BOX</a>` : ''}
         <a class="btn-link btn-yt" href="${g.yt}" target="_blank">▶ YT</a>
       </span>
     </div>
@@ -534,12 +534,12 @@ function renderSchedule(elId, schedule) {
 const menPlayers = [
   { num:4,  nameJp:'今野 瑛心',                   nameEn:'KONNO, Eishin',            pos:'PF',    posClass:'PF',   ht:'192', grade:'高3', school:'仙台大明成' },
   { num:5,  nameJp:'恒岡 ケイマン',               nameEn:'TSUNEOKA, Cayman',         pos:'PF',    posClass:'PF',   ht:'196', grade:'高3', school:'開志国際' },
-  { num:6,  nameJp:'トンプソン ヨセフ ハサン',    nameEn:'THOMPSON, Yousef Hasan',   pos:'SG',    posClass:'SG',   ht:'184', grade:'高3', school:'福岡第一' },
+  { num:6,  nameJp:'トンプソン ヨセフ ハサン',    nameEn:'THOMPSON, Yousef Hasan',   pos:'SG',    posClass:'SG',   ht:'184', grade:'高3', school:'福岡第$��' },
   { num:7,  nameJp:'櫻井 照大',                   nameEn:'SAKURAI, Tetta',           pos:'PG',    posClass:'PG',   ht:'180', grade:'高3', school:'福岡大大濠' },
-  { num:9,  nameJp:'音山 繋太',                   nameEn:'OTOYAMA, Keita',           pos:'SF',    posClass:'SF',   ht:'196', grade:'高3', school:'中部大第一' },
+  { num:9,  nameJp:'音山 繋太',                   nameEn:'OTOYAMA, Keita',           pos:'SF',    posClass:'SF',   ht:'196', grade:'高3', school:'中部大第$��' },
   { num:10, nameJp:'マクミラン アレックス',       nameEn:'MCMILLAN, Alex',           pos:'PF',    posClass:'PF',   ht:'198', grade:'高3', school:'沖縄水産' },
   { num:11, nameJp:'髙橋 歩路',                   nameEn:'TAKAHASHI, Aru',           pos:'SG/SF', posClass:'SGSF', ht:'187', grade:'高3', school:'開志国際' },
-  { num:12, nameJp:'藤原 弘大',                   nameEn:'FUJIWARA, Hiromasa',       pos:'SG',    posClass:'SG',   ht:'180', grade:'高3', school:'北陸学院' },
+  { num:12, nameJp:'�!�原 弘大',                   nameEn:'FUJIWARA, Hiromasa',       pos:'SG',    posClass:'SG',   ht:'180', grade:'高3', school:'北陸学院' },
   { num:13, nameJp:'本田 蕗以',                   nameEn:'HONDA, Roi',               pos:'SF',    posClass:'SF',   ht:'189', grade:'高3', school:'福岡大大濠' },
   { num:14, nameJp:'ベネディクト 研一郎',         nameEn:'BENEDICT, Kenichiro',      pos:'SF',    posClass:'SF',   ht:'196', grade:'高3', school:"St. George's" },
   { num:15, nameJp:'白谷 柱誠ジャック',           nameEn:'SHIRATANI, Chuson Jack',   pos:'PF',    posClass:'PF',   ht:'194', grade:'高2', school:'福岡大大濠' },
@@ -571,7 +571,7 @@ const womenPlayers = [
   { num:15, nameJp:'竹内 みや',  nameEn:'TAKEUCHI, Miya',   pos:'G', posClass:'G', ht:'161', grade:'高3', school:'桜花学園' },
   { num:16, nameJp:'安藤 玲',    nameEn:'ANDO, Rei',        pos:'F', posClass:'F', ht:'180', grade:'高3', school:'鳥取城北' },
   { num:18, nameJp:'難波 絵愛',  nameEn:'NAMBA, Emana',     pos:'G', posClass:'G', ht:'170', grade:'高1', school:'桜花学園' },
-  { num:20, nameJp:'中澤 希乃',  nameEn:'NAKAZAWA, Kino',   pos:'F', posClass:'F', ht:'176', grade:'高2', school:'昭和学院' },
+  { num:20, nameJp:'中澤 希乃',  nameEn:'NAKAZAWA, Kino',   pos:'F', posClass:'F', ht:'176', grade:'高2', school:'席和学院' },
   { num:31, nameJp:'伊藤 千寛',  nameEn:'ITO, Chihiro',     pos:'F', posClass:'F', ht:'172', grade:'高3', school:'四日市メリノール' },
   { num:39, nameJp:'渡邉 瑠花',  nameEn:'WATANABE, Ruka',   pos:'F', posClass:'F', ht:'176', grade:'高2', school:'県立山形中央' },
   { num:48, nameJp:'安井 穂香',  nameEn:'YASUI, Honoka',    pos:'G', posClass:'G', ht:'168', grade:'高1', school:'四日市メリノール' },

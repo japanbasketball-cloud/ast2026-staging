@@ -339,6 +339,29 @@
     white-space: nowrap; vertical-align: middle;
     padding-right: 5px;
   }
+
+  /* ── RESPONSIVE: Tablet & PC ── */
+  @media (min-width: 900px) {
+    :root { --fix-w: 200px; --cell-h: 34px; --sec-h: 26px; }
+    .box-wrap { margin: 10px 12px 0; border-radius: 8px; }
+    .box-table { table-layout: auto; width: 100%; }
+    .fix { min-width: var(--fix-w); max-width: var(--fix-w); }
+    .s, .s-tot { width: auto; min-width: 44px; font-size: 13px; padding-right: 8px; }
+    .sec-stat  { width: auto; min-width: 44px; font-size: 11px; padding-right: 8px; }
+    .p-name { font-size: 13px; }
+    .p-num  { font-size: 12px; min-width: 22px; }
+    .fix-inner, .totals-fix-inner { padding: 0 12px; }
+    .sec-fix-inner { padding: 0 14px; }
+    .quarters-wrap { max-width: 700px; margin: 10px auto 0; }
+  }
+  @media (min-width: 1400px) {
+    :root { --fix-w: 240px; --cell-h: 38px; --sec-h: 30px; }
+    .s, .s-tot { min-width: 52px; font-size: 14px; }
+    .sec-stat  { min-width: 52px; font-size: 12px; }
+    .p-name { font-size: 14.5px; }
+    .p-num  { font-size: 13px; }
+    .p-pos  { font-size: 11px; }
+  }
 </style>
 </head>
 

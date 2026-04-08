@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>JPN 86 - 94 SLO | AST 2026</title>
+<title>JPN 62 - ITA 51 | 4 Nations 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -30,15 +30,10 @@
     min-height: 100vh;
   }
 
-  /* ══════════════════════════════
-     GAME HEADER (sticky)
-  ══════════════════════════════ */
-  /* ── GAME HEADER (sticky) ── */
   .game-header {
     background: var(--header-bg);
     position: sticky; top: 0; z-index: 100;
   }
-  /* 1行目: NBA準拠スコアバー */
   .score-bar {
     display: flex; align-items: center;
     padding: 10px 14px 8px;
@@ -49,14 +44,12 @@
     font-size: 20px; line-height: 1;
     flex-shrink: 0; margin-right: auto;
   }
-  /* スコアエリア全体を中央に固定幅で配置 */
   .score-area {
     display: flex; align-items: center;
     justify-content: center;
     flex: 1;
     gap: 0;
   }
-  /* 左右チーム */
   .score-team {
     display: flex; align-items: center;
     gap: 6px; width: 120px;
@@ -91,7 +84,6 @@
     flex-shrink: 0;
   }
   .team-score.loser { color: rgba(255,255,255,0.45); }
-  /* 中央: FINAL */
   .score-center {
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -108,7 +100,6 @@
     font-size: 9px; color: rgba(255,255,255,0.25);
     letter-spacing: 0.08em;
   }
-  /* 2行目: 大会情報 */
   .game-meta-bar {
     display: flex; align-items: center; justify-content: center;
     padding: 0 14px 7px;
@@ -122,9 +113,6 @@
   }
   .meta-dot { color: rgba(255,255,255,0.2); font-size: 8px; }
 
-  /* ══════════════════════════════
-     QUARTER SCORES
-  ══════════════════════════════ */
   .quarters-wrap {
     background: var(--white);
     margin: 10px 12px 0;
@@ -165,9 +153,6 @@
   .q-table td.total { font-size: 17px; font-weight: 700; }
   .q-table td.loser-score { color: rgba(0,0,0,0.35); }
 
-  /* ══════════════════════════════
-     BOX SCORE
-  ══════════════════════════════ */
   .box-wrap {
     margin: 10px 0 0;
     background: var(--white);
@@ -194,14 +179,12 @@
     width: max-content;
   }
 
-  /* Fixed left column */
   .fix {
     position: sticky; left: 0; z-index: 3;
     width: var(--fix-w); min-width: var(--fix-w);
     border-right: 1px solid var(--border-dark);
   }
 
-  /* Section header rows (先発・控え) */
   .sec-row td {
     height: var(--sec-h);
     background: var(--section-bg);
@@ -226,7 +209,6 @@
     padding-right: 5px;
   }
 
-  /* Player rows */
   .p-row td {
     height: var(--cell-h);
     background: var(--white);
@@ -237,7 +219,6 @@
   .p-row:active td { background: #F8F8F8; }
   .p-row:active td.fix { background: #F8F8F8; }
 
-  /* Fixed cell inner layout */
   .fix-inner {
     display: flex; align-items: center; gap: 4px;
     height: var(--cell-h); padding: 0 8px;
@@ -259,7 +240,6 @@
     flex-shrink: 0;
   }
 
-  /* Stat cells */
   .s {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 12px; font-weight: 600;
@@ -275,7 +255,6 @@
   .pm-n { color: #CC0000; }
   .pm-z { color: var(--text-dim); }
 
-  /* DNP row */
   .dnp-row td {
     height: var(--cell-h);
     background: var(--white);
@@ -289,9 +268,6 @@
     padding-left: 8px;
   }
 
-  /* ══════════════════════════════
-     BOTTOM TEAM SWITCHER
-  ══════════════════════════════ */
   .team-switcher {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
     display: flex; height: 48px;
@@ -310,14 +286,12 @@
   .t-btn:not(.active):active { background: #EFEFEF; }
   .t-flag { font-size: 15px; }
 
-  /* ── CIRCULAR FLAG ── */
   .flag-circle-img {
     width: 26px; height: 26px; border-radius: 50%;
     object-fit: cover; flex-shrink: 0;
     border: 1px solid rgba(255,255,255,0.15);
   }
 
-  /* ── TOTALS ROW ── */
   .totals-row td {
     height: 28px;
     background: #F7F7F7;
@@ -368,47 +342,45 @@
 
 <!-- GAME HEADER -->
 <div class="game-header">
-  <!-- スコアバー: NBA.com準拠 左右対称 -->
   <div class="score-bar">
     <a href="../index.html" class="back-btn">←</a>
 
-    <!-- スコアエリア（中央寄せ） -->
     <div class="score-area">
-      <!-- 左チーム (JPN / 敗者) -->
+      <!-- 左チーム: JPN (勝者) -->
       <div class="score-team left">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTUiIGN5PSIxMCIgcj0iNiIgZmlsbD0iI2JjMDAyZCIvPjwvc3ZnPg==" class="flag-circle-img" alt="JPN">
         <div class="team-info">
           <span class="team-abbr">JPN</span>
-          <span class="team-record">U18 Men's</span>
+          <span class="team-record">U17 Women's</span>
         </div>
-        <span class="team-score loser">86</span>
+        <span class="team-score">62</span>
       </div>
 
-      <!-- 中央: ステータス -->
+      <!-- 中央 -->
       <div class="score-center">
         <span class="final-badge">FINAL</span>
         <span class="game-period">4Q</span>
       </div>
 
-      <!-- 右チーム (SLO / 勝者) -->
+      <!-- 右チーム: ITA (敗者) -->
       <div class="score-team right">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjRTQyMjJFIi8+PHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjYuNjciIGZpbGw9IiNmZmYiLz48cmVjdCB5PSI2LjY3IiB3aWR0aD0iMzAiIGhlaWdodD0iNi42NyIgZmlsbD0iIzAwM0RBNSIvPjwvc3ZnPg==" class="flag-circle-img" alt="SLO">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjQ0UyQjM3Ii8+PHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA5MjQ2Ii8+PC9zdmc+" class="flag-circle-img" alt="ITA">
         <div class="team-info">
-          <span class="team-abbr">SLO</span>
-          <span class="team-record">U18 Men's</span>
+          <span class="team-abbr">ITA</span>
+          <span class="team-record">U17 Women's</span>
         </div>
-        <span class="team-score">94</span>
+        <span class="team-score loser">51</span>
       </div>
     </div>
   </div>
 
   <!-- メタ情報 -->
   <div class="game-meta-bar">
-    <span class="game-meta">Apr 4, 2026</span>
+    <span class="game-meta">Apr 8, 2026</span>
     <span class="meta-dot">·</span>
-    <span class="game-meta">Group A</span>
+    <span class="game-meta">4 Nations</span>
     <span class="meta-dot">·</span>
-    <span class="game-meta">Albert Schweitzer Tournament</span>
+    <span class="game-meta">U17 Women's</span>
   </div>
 </div>
 
@@ -424,13 +396,13 @@
     <tbody>
       <tr>
         <td>🇯🇵 JPN</td>
-        <td>16</td><td>23</td><td>22</td><td>25</td>
-        <td class="total loser-score">86</td>
+        <td>13</td><td>21</td><td>12</td><td>16</td>
+        <td class="total">62</td>
       </tr>
       <tr>
-        <td>🇸🇮 SLO</td>
-        <td>22</td><td>22</td><td>26</td><td>24</td>
-        <td class="total">94</td>
+        <td>🇮🇹 ITA</td>
+        <td>15</td><td>17</td><td>11</td><td>8</td>
+        <td class="total loser-score">51</td>
       </tr>
     </tbody>
   </table>
@@ -451,13 +423,12 @@
   <button class="t-btn active" onclick="switchTeam('jpn', this)">
     <span class="t-flag">🇯🇵</span> JPN
   </button>
-  <button class="t-btn" onclick="switchTeam('slo', this)">
-    <span class="t-flag">🇸🇮</span> SLO
+  <button class="t-btn" onclick="switchTeam('ita', this)">
+    <span class="t-flag">🇮🇹</span> ITA
   </button>
 </div>
 
 <script>
-// ── COLUMN DEFINITIONS (NBA order) ──
 const COLS = [
   'MIN','PTS','REB','AST','STL','BLK',
   'FGM','FGA','FG%',
@@ -466,7 +437,6 @@ const COLS = [
   'OREB','DREB','TOV','PF','+/-'
 ];
 
-// ── HELPERS ──
 function pct(v) { return v === null ? '-' : v.toFixed(1); }
 function pm(v)  { return v > 0 ? '+' + v : String(v); }
 function pmCls(v) { return v > 0 ? 'pm-p' : v < 0 ? 'pm-n' : 'pm-z'; }
@@ -491,7 +461,6 @@ function cls(i, p) {
   return 's';
 }
 
-// ── ROW BUILDERS ──
 function secRow(label) {
   return `<tr class="sec-row">
     <td class="fix"><div class="sec-fix-inner">${label}</div></td>
@@ -520,41 +489,47 @@ function playerRow(p) {
   </tr>`;
 }
 
-// ── JAPAN DATA ──
-// Starters: sorted by jersey # (PDF order: #12,#11,#15,#14,#10 → sorted: #10,#11,#12,#14,#15)
+// ── JAPAN DATA (U17 Women's) ──
 const jpnStarters = [
-  { num:10, name:'マクミラン',   pos:'PF',    min:'22:29', pts:4,  reb:7,  ast:1, stl:1, blk:0, fgm:1,  fga:1,  fg:100.0, tpm:0, tpa:0,  tp:null,  ftm:2, fta:2, ft:100.0, oreb:5, dreb:2, tov:0, pf:3, pm:-13 },
-  { num:11, name:'髙橋',         pos:'SG/SF', min:'30:04', pts:18, reb:0,  ast:1, stl:2, blk:0, fgm:6,  fga:17, fg:35.3,  tpm:6, tpa:16, tp:37.5,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:1, pf:0, pm:-3  },
-  { num:12, name:'藤原',         pos:'SG',    min:'21:14', pts:14, reb:2,  ast:1, stl:0, blk:1, fgm:6,  fga:15, fg:40.0,  tpm:2, tpa:7,  tp:28.6,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:2, pf:3, pm:-5  },
-  { num:14, name:'ベネディクト', pos:'SF',    min:'27:52', pts:22, reb:6,  ast:3, stl:4, blk:1, fgm:10, fga:18, fg:55.6,  tpm:1, tpa:5,  tp:20.0,  ftm:1, fta:3, ft:33.3,  oreb:3, dreb:3, tov:1, pf:1, pm:2   },
-  { num:15, name:'白谷',         pos:'PF',    min:'32:05', pts:13, reb:10, ast:1, stl:1, blk:0, fgm:5,  fga:15, fg:33.3,  tpm:1, tpa:5,  tp:20.0,  ftm:2, fta:2, ft:100.0, oreb:3, dreb:7, tov:6, pf:0, pm:-1  },
+  { num:6,  name:'小林',   pos:'F', min:'23:03', pts:7,  reb:4,  ast:1, stl:1, blk:0, fgm:2, fga:5,  fg:40.0,  tpm:0, tpa:0, tp:null, ftm:3, fta:6, ft:50.0,  oreb:4, dreb:0, tov:3, pf:2, pm:8   },
+  { num:7,  name:'清水',   pos:'C', min:'23:35', pts:1,  reb:1,  ast:0, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,   tpm:0, tpa:0, tp:null, ftm:1, fta:2, ft:50.0,  oreb:1, dreb:0, tov:3, pf:3, pm:10  },
+  { num:14, name:'大槻',   pos:'G', min:'18:01', pts:8,  reb:8,  ast:2, stl:2, blk:0, fgm:3, fga:7,  fg:42.9,  tpm:0, tpa:3, tp:0.0,  ftm:2, fta:4, ft:50.0,  oreb:4, dreb:4, tov:1, pf:2, pm:17  },
+  { num:15, name:'竹内',   pos:'G', min:'19:30', pts:17, reb:1,  ast:1, stl:5, blk:0, fgm:6, fga:8,  fg:75.0,  tpm:1, tpa:2, tp:50.0, ftm:2, fta:3, ft:66.7,  oreb:0, dreb:1, tov:0, pf:0, pm:11  },
+  { num:20, name:'中澤',   pos:'F', min:'25:14', pts:3,  reb:5,  ast:0, stl:1, blk:0, fgm:1, fga:1,  fg:100.0, tpm:0, tpa:3, tp:0.0,  ftm:1, fta:2, ft:50.0,  oreb:2, dreb:3, tov:0, pf:2, pm:4   },
 ];
 const jpnBench = [
-  { num:4,  name:'今野',        pos:'PF',  dnp:true },
-  { num:5,  name:'恒岡',        pos:'PF',  min:'16:18', pts:2,  reb:4, ast:0, stl:1, blk:0, fgm:1, fga:3,  fg:33.3,  tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:2, dreb:2, tov:1, pf:1, pm:5   },
-  { num:6,  name:'トンプソン',   pos:'SG',  min:'15:40', pts:6,  reb:0, ast:1, stl:1, blk:1, fgm:3, fga:7,  fg:42.9,  tpm:0, tpa:1, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:1, pf:0, pm:-6  },
-  { num:7,  name:'櫻井',        pos:'PG',  min:'17:26', pts:4,  reb:1, ast:5, stl:3, blk:0, fgm:2, fga:5,  fg:40.0,  tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:1, pf:3, pm:5   },
-  { num:13, name:'本田',        pos:'SF',  min:'5:43',  pts:0,  reb:0, ast:1, stl:0, blk:0, fgm:0, fga:2,  fg:0.0,   tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:0, pf:0, pm:-19 },
-  { num:16, name:'中村',        pos:'SF',  min:'9:56',  pts:3,  reb:1, ast:0, stl:1, blk:0, fgm:1, fga:1,  fg:100.0, tpm:1, tpa:1, tp:100.0, ftm:0, fta:0, ft:null,  oreb:1, dreb:0, tov:0, pf:1, pm:-5  },
-  { num:18, name:'イヘツ',        pos:'SF',  min:'1:13',  pts:0,  reb:0, ast:0, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:0, pf:0, pm:0   },
+  { num:11, name:'加地',   pos:'F', dnp:true },
+  { num:13, name:'権藤',   pos:'G', min:'11:08', pts:0,  reb:0,  ast:0, stl:1, blk:0, fgm:0, fga:0,  fg:null,  tpm:0, tpa:4, tp:0.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:1, pf:0, pm:-14 },
+  { num:16, name:'安藤',   pos:'F', min:'16:06', pts:5,  reb:1,  ast:0, stl:0, blk:0, fgm:1, fga:2,  fg:50.0,  tpm:1, tpa:2, tp:50.0, ftm:0, fta:2, ft:0.0,   oreb:1, dreb:0, tov:0, pf:3, pm:11  },
+  { num:18, name:'難波',   pos:'G', min:'09:29', pts:2,  reb:0,  ast:0, stl:1, blk:0, fgm:0, fga:0,  fg:null,  tpm:0, tpa:1, tp:0.0,  ftm:2, fta:2, ft:100.0, oreb:0, dreb:0, tov:0, pf:0, pm:1   },
+  { num:31, name:'伊藤',   pos:'F', min:'14:56', pts:13, reb:1,  ast:0, stl:0, blk:0, fgm:2, fga:2,  fg:100.0, tpm:3, tpa:4, tp:75.0, ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:2, pf:0, pm:8   },
+  { num:39, name:'渡邉',   pos:'F', min:'13:02', pts:2,  reb:1,  ast:1, stl:1, blk:0, fgm:1, fga:3,  fg:33.3,  tpm:0, tpa:2, tp:0.0,  ftm:0, fta:0, ft:null,  oreb:1, dreb:0, tov:2, pf:1, pm:0   },
+  { num:48, name:'安井',   pos:'G', min:'10:30', pts:4,  reb:2,  ast:1, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,   tpm:0, tpa:2, tp:0.0,  ftm:4, fta:4, ft:100.0, oreb:0, dreb:2, tov:1, pf:2, pm:2   },
+  { num:71, name:'石綿',   pos:'C', min:'14:51', pts:0,  reb:1,  ast:0, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:0, tpa:2, tp:0.0,  ftm:0, fta:0, ft:null,  oreb:1, dreb:0, tov:1, pf:5, pm:-3  },
+  { num:72, name:'今井',   pos:'C', dnp:true },
 ];
 
-// ── SLOVENIA DATA ──
-// Starters: #7,#13,#11,#8,#15 → sorted: #7,#8,#11,#13,#15
-const sloStarters = [
-  { num:7,  name:'M.Ciperle',      pos:'SF', min:'27:06', pts:11, reb:6,  ast:3, stl:1, blk:1, fgm:4, fga:11, fg:36.4,  tpm:1, tpa:3, tp:33.3, ftm:2, fta:2, ft:100.0, oreb:1, dreb:5, tov:4, pf:1, pm:-2 },
-  { num:8,  name:'L.Bojović',      pos:'SG', min:'27:40', pts:17, reb:2,  ast:2, stl:1, blk:0, fgm:7, fga:13, fg:53.8,  tpm:1, tpa:5, tp:20.0, ftm:2, fta:2, ft:100.0, oreb:0, dreb:2, tov:2, pf:3, pm:17 },
-  { num:11, name:'I.Stjepanović',  pos:'SF', min:'25:11', pts:13, reb:4,  ast:1, stl:2, blk:1, fgm:6, fga:13, fg:46.2,  tpm:1, tpa:3, tp:33.3, ftm:0, fta:0, ft:null,  oreb:2, dreb:2, tov:7, pf:3, pm:-1 },
-  { num:13, name:'L.Jarc',         pos:'PF', min:'18:49', pts:8,  reb:0,  ast:0, stl:1, blk:1, fgm:4, fga:7,  fg:57.1,  tpm:0, tpa:2, tp:0.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:2, pf:0, pm:0  },
-  { num:15, name:'N.Rožnik',       pos:'C',  min:'16:33', pts:4,  reb:9,  ast:1, stl:1, blk:0, fgm:2, fga:2,  fg:100.0, tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null,  oreb:1, dreb:8, tov:0, pf:0, pm:-4 },
+// ── ITALY DATA ──
+const itaStarters = [
+  { num:5,  name:'E.Meggiolaro',  pos:'G', min:'24:01', pts:2,  reb:1,  ast:1, stl:3, blk:0, fgm:1, fga:3,  fg:33.3, tpm:0, tpa:3, tp:0.0,  ftm:0, fta:2, ft:0.0,   oreb:1, dreb:0, tov:3, pf:1, pm:-13 },
+  { num:6,  name:'F.Trezzi',      pos:'G', min:'28:08', pts:0,  reb:4,  ast:3, stl:1, blk:0, fgm:0, fga:2,  fg:0.0,  tpm:0, tpa:2, tp:0.0,  ftm:0, fta:2, ft:0.0,   oreb:1, dreb:3, tov:4, pf:2, pm:-5  },
+  { num:11, name:'A.Cosaro',      pos:'F', min:'19:57', pts:11, reb:4,  ast:1, stl:1, blk:0, fgm:3, fga:6,  fg:50.0, tpm:1, tpa:3, tp:33.3, ftm:2, fta:2, ft:100.0, oreb:2, dreb:2, tov:3, pf:3, pm:-9  },
+  { num:12, name:'A.Lokoka',      pos:'C', min:'22:13', pts:7,  reb:1,  ast:0, stl:0, blk:1, fgm:3, fga:3,  fg:100.0,tpm:0, tpa:0, tp:null, ftm:1, fta:2, ft:50.0,  oreb:0, dreb:1, tov:1, pf:0, pm:-7  },
+  { num:18, name:'D.Obaseki',     pos:'C', min:'25:52', pts:12, reb:9,  ast:1, stl:0, blk:1, fgm:2, fga:5,  fg:40.0, tpm:0, tpa:0, tp:null, ftm:8, fta:12,ft:66.7,  oreb:5, dreb:4, tov:6, pf:1, pm:-19 },
 ];
-const sloBench = [
-  { num:4,  name:'O.Kuzman',  pos:'PG', min:'17:04', pts:6,  reb:4,  ast:1, stl:1, blk:0, fgm:3, fga:7,  fg:42.9, tpm:0, tpa:1, tp:0.0,  ftm:0, fta:0, ft:null, oreb:1, dreb:3, tov:1, pf:1, pm:9  },
-  { num:6,  name:'T.Balažić', pos:'SG', min:'15:12', pts:13, reb:0,  ast:0, stl:1, blk:0, fgm:6, fga:7,  fg:85.7, tpm:1, tpa:2, tp:50.0, ftm:0, fta:0, ft:null, oreb:0, dreb:0, tov:0, pf:0, pm:2  },
-  { num:10, name:'J.Krošelj', pos:'PG', min:'21:59', pts:9,  reb:4,  ast:7, stl:0, blk:0, fgm:3, fga:6,  fg:50.0, tpm:0, tpa:1, tp:0.0,  ftm:3, fta:4, ft:75.0, oreb:0, dreb:4, tov:1, pf:1, pm:13 },
-  { num:12, name:'L.Virant',  pos:'SF', min:'10:32', pts:1,  reb:1,  ast:0, stl:1, blk:0, fgm:0, fga:0,  fg:null, tpm:0, tpa:0, tp:null, ftm:1, fta:2, ft:50.0, oreb:0, dreb:1, tov:1, pf:2, pm:1  },
-  { num:14, name:'A.Pašić',   pos:'PF', min:'19:54', pts:12, reb:10, ast:1, stl:1, blk:2, fgm:5, fga:6,  fg:83.3, tpm:2, tpa:3, tp:66.7, ftm:0, fta:0, ft:null, oreb:5, dreb:5, tov:2, pf:3, pm:5  },
+const itaBench = [
+  { num:7,  name:'A.Donato',      pos:'G', min:'07:42', pts:4,  reb:1,  ast:1, stl:0, blk:0, fgm:1, fga:1,  fg:100.0,tpm:0, tpa:2, tp:0.0,  ftm:2, fta:2, ft:100.0, oreb:0, dreb:1, tov:2, pf:3, pm:4   },
+  { num:8,  name:'G.Quaratesi',   pos:'G', min:'17:25', pts:5,  reb:1,  ast:1, stl:1, blk:0, fgm:1, fga:2,  fg:50.0, tpm:1, tpa:1, tp:100.0,ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:1, pf:4, pm:-8  },
+  { num:9,  name:'G.Olandi',      pos:'G', min:'08:24', pts:3,  reb:1,  ast:3, stl:1, blk:0, fgm:1, fga:1,  fg:100.0,tpm:0, tpa:1, tp:0.0,  ftm:1, fta:2, ft:50.0,  oreb:0, dreb:1, tov:0, pf:0, pm:4   },
+  { num:10, name:'D.Dico',        pos:'G', min:'02:32', pts:0,  reb:1,  ast:0, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,  tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:0, pf:1, pm:0   },
+  { num:13, name:'E.Sanogo',      pos:'F', min:'16:31', pts:0,  reb:3,  ast:0, stl:1, blk:0, fgm:0, fga:1,  fg:0.0,  tpm:0, tpa:1, tp:0.0,  ftm:0, fta:2, ft:0.0,   oreb:2, dreb:1, tov:0, pf:2, pm:-4  },
+  { num:14, name:'N.Tall',        pos:'C', min:'14:01', pts:7,  reb:1,  ast:0, stl:1, blk:0, fgm:3, fga:4,  fg:75.0, tpm:0, tpa:0, tp:null, ftm:1, fta:4, ft:25.0,  oreb:0, dreb:1, tov:0, pf:0, pm:8   },
+  { num:19, name:'A.Appetiti',    pos:'F', min:'12:39', pts:0,  reb:0,  ast:0, stl:0, blk:1, fgm:0, fga:2,  fg:0.0,  tpm:0, tpa:1, tp:0.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:1, pf:0, pm:-6  },
 ];
+
+// ── TOTALS ──
+const jpnTot = { pts:62, reb:25, ast:6, stl:12, blk:0, fgm:16, fga:30, fg:53.3, tpm:5, tpa:25, tp:20.0, ftm:15, fta:25, ft:60.0, oreb:14, dreb:11, tov:14, pf:20 };
+const itaTot = { pts:51, reb:27, ast:11, stl:9, blk:3, fgm:15, fga:31, fg:48.4, tpm:2, tpa:14, tp:14.3, ftm:15, fta:30, ft:50.0, oreb:11, dreb:16, tov:21, pf:17 };
 
 // ── RENDER ──
 function totalsRow(tot) {
@@ -584,16 +559,12 @@ function render(starters, bench, tot) {
   t.innerHTML = h;
 }
 
-// totals
-const jpnTot = { pts:86, reb:31, ast:14, stl:14, blk:3, fgm:24, fga:49, fg:48.0, tpm:11, tpa:35, tp:31.4, ftm:5,  fta:7,  ft:71.4, oreb:14, dreb:17, tov:13, pf:12 };
-const sloTot = { pts:94, reb:40, ast:16, stl:10, blk:5, fgm:34, fga:52, fg:65.4, tpm:6,  tpa:20, tp:30.0, ftm:8,  fta:10, ft:80.0, oreb:10, dreb:30, tov:20, pf:14 };
-
 function switchTeam(team, btn) {
   document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  render(team === 'jpn' ? jpnStarters : sloStarters,
-         team === 'jpn' ? jpnBench    : sloBench,
-         team === 'jpn' ? jpnTot      : sloTot);
+  render(team === 'jpn' ? jpnStarters : itaStarters,
+         team === 'jpn' ? jpnBench    : itaBench,
+         team === 'jpn' ? jpnTot      : itaTot);
 }
 
 render(jpnStarters, jpnBench, jpnTot);

@@ -309,6 +309,50 @@
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     flex-shrink: 0; max-width: 38%;
   }
+
+  /* ── RESPONSIVE: Tablet & PC ── */
+  @media (min-width: 768px) {
+    .panel { max-width: 720px; margin: 0 auto; }
+    .header { display: flex; flex-direction: column; align-items: center; }
+    .header > * { width: 100%; max-width: 720px; }
+    .tabs { max-width: 720px; margin: 0 auto; width: 100%; }
+    .roster-wrap, .schedule-wrap, .staff-wrap { margin-left: auto; margin-right: auto; max-width: 696px; }
+    .col-head, .player-row {
+      grid-template-columns: 28px 1fr 40px 44px 32px 120px;
+      padding: 8px 16px 8px 14px; gap: 6px;
+    }
+    .p-name-jp { font-size: 13.5px; }
+    .p-name-en { font-size: 10px; }
+    .p-ht { font-size: 16px; }
+    .p-school { font-size: 12px; }
+    .staff-row { padding: 11px 18px; }
+    .staff-role { font-size: 9.5px; width: 100px; }
+    .staff-name-jp { font-size: 13.5px; }
+    .staff-name-en { font-size: 10px; }
+    .staff-org { font-size: 10.5px; }
+    .game-row { padding: 10px 18px; gap: 10px; }
+    .game-date { font-size: 13px; }
+    .game-opponent { font-size: 13.5px; }
+    .game-result { font-size: 13px; }
+    .btn-link { font-size: 11px; padding: 4px 9px; }
+  }
+  @media (min-width: 1024px) {
+    .panel { max-width: 860px; }
+    .header > * { max-width: 860px; }
+    .tabs { max-width: 860px; }
+    .roster-wrap, .schedule-wrap, .staff-wrap { max-width: 836px; }
+    .col-head, .player-row {
+      grid-template-columns: 32px 1fr 46px 50px 36px 160px;
+      padding: 10px 20px 10px 16px; gap: 8px;
+    }
+    .p-num { font-size: 15px; }
+    .p-name-jp { font-size: 14.5px; }
+    .p-name-en { font-size: 10.5px; }
+    .p-ht { font-size: 17px; }
+    .p-grade { font-size: 13px; }
+    .p-school { font-size: 12.5px; }
+    .game-row { padding: 12px 22px; }
+  }
 </style>
 </head>
 <body>
@@ -553,7 +597,7 @@ const menSchedule = [
   { date:'4/4',  flag:'🇸🇮', opp:'vs スロベニア',      score:'86 - 94', status:'s-loss',     label:'LOSS',     jst:'23:00',   box:'boxscore/20260404_SLO.html', yt:YT },
   { date:'4/5',  flag:'🇹🇷', opp:'vs トルコ',          score:'66 - 78', status:'s-loss',     label:'LOSS',     jst:'22:00',   box:'boxscore/20260405_TUR.html', yt:YT },
   { date:'4/6',  flag:'🇸🇪', opp:'vs スウェーデン',    score:'97 - 84', status:'s-win',      label:'WIN',      jst:'22:00',   box:'boxscore/20260406_SWE.html', yt:YT },
-  { date:'4/8',  flag:'🇧🇭', opp:'vs バーレーン',      score:null,      status:'s-upcoming', label:'UPCOMING', jst:'22:15',   box:null, yt:YT },
+  { date:'4/8',  flag:'🇧🇭', opp:'vs バーレーン',      score:'90 - 79', status:'s-win',      label:'WIN',      jst:'22:15',   box:'BOXSCORE/20260408_BRN.html', yt:YT },
   { date:'4/9',  flag:'🇩🇪', opp:'vs ドイツ',          score:null,      status:'s-upcoming', label:'UPCOMING', jst:'翌 3:00', box:null, yt:YT },
   { date:'4/10', flag:'🏆',  opp:'順位決定戦・準決勝', score:null,      status:'s-tbd',      label:'TBD',      jst:null,      box:null, yt:YT },
   { date:'4/11', flag:'🏅',  opp:'順位決定戦・決勝',   score:null,      status:'s-tbd',      label:'TBD',      jst:null,      box:null, yt:YT },
@@ -581,7 +625,7 @@ const womenPlayers = [
 
 // JBA公式発表の日本時間をそのまま使用
 const womenSchedule = [
-  { date:'4/8',  flag:'🇮🇹', opp:'vs イタリア',  score:null, status:'s-upcoming', label:'UPCOMING', jst:'22:30',   box:null, yt:YT },
+  { date:'4/8',  flag:'🇮🇹', opp:'vs イタリア',  score:'62 - 51', status:'s-win', label:'WIN', jst:'22:30',   box:'BOXSCORE/20260408_ITA_W.html', yt:YT },
   { date:'4/9',  flag:'🇩🇪', opp:'vs ドイツ',    score:null, status:'s-upcoming', label:'UPCOMING', jst:'翌 0:45', box:null, yt:YT },
   { date:'4/10', flag:'🇷🇸', opp:'vs セルビア',  score:null, status:'s-upcoming', label:'UPCOMING', jst:'翌 3:00', box:null, yt:YT },
 ];

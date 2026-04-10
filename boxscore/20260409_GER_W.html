@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>JPN 81 - GER 61 | AST 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F4F4;
+    --white: #FFFFFF;
+    --border: #E0E0E0;
+    --border-dark: #CACACA;
+    --text-primary: #111111;
+    --text-dim: #888888;
+    --text-link: #0066CC;
+    --header-bg: #1A1A1A;
+    --section-bg: #F0F0F0;
+    --section-text: #555555;
+    --cell-h: 27px;
+    --sec-h: 22px;
+    --fix-w: 135px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--bg);
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-bottom: 50px;
+    min-height: 100vh;
+  }
+
+  .game-header {
+    background: var(--header-bg);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .score-bar {
+    display: flex; align-items: center;
+    padding: 10px 14px 8px;
+    gap: 0;
+  }
+  .back-btn {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 20px; line-height: 1;
+    flex-shrink: 0; margin-right: auto;
+  }
+  .score-area {
+    display: flex; align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 0;
+  }
+  .score-team {
+    display: flex; align-items: center;
+    gap: 6px; width: 120px;
+    justify-content: flex-end;
+  }
+  .score-team.right {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  .team-flag { font-size: 20px; line-height: 1; flex-shrink: 0; }
+  .team-info {
+    display: flex; flex-direction: column;
+    align-items: flex-start; gap: 0;
+    flex-shrink: 0;
+  }
+  .score-team.right .team-info { align-items: flex-end; }
+  .team-abbr {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.6); line-height: 1;
+    text-transform: uppercase;
+  }
+  .team-record {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9px; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em; line-height: 1.2;
+  }
+  .team-score {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 40px; font-weight: 700; line-height: 1;
+    color: white; letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+  .team-score.loser { color: rgba(255,255,255,0.45); }
+  .score-center {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex-shrink: 0; padding: 0 8px; gap: 2px;
+  }
+  .final-badge {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+  }
+  .game-period {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9px; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+  }
+  .game-meta-bar {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 14px 7px;
+    gap: 6px;
+  }
+  .game-meta {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+  .meta-dot { color: rgba(255,255,255,0.2); font-size: 8px; }
+
+  .quarters-wrap {
+    background: var(--white);
+    margin: 10px 12px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .section-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--text-dim); text-transform: uppercase;
+    padding: 6px 14px;
+    background: #FAFAFA;
+    border-bottom: 1px solid var(--border);
+  }
+  .q-table {
+    width: 100%; border-collapse: collapse;
+  }
+  .q-table th {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--text-dim); text-align: center;
+    padding: 5px 0; border-bottom: 1px solid var(--border);
+    border-right: 1px solid rgba(0,0,0,0.06);
+  }
+  .q-table th:first-child { text-align: left; padding-left: 14px; width: 90px; border-right: 1px solid rgba(0,0,0,0.1); }
+  .q-table th:last-child { border-right: none; }
+  .q-table td {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--text-primary); text-align: center;
+    padding: 7px 0; border-bottom: 1px solid var(--border);
+    border-right: 1px solid rgba(0,0,0,0.06);
+  }
+  .q-table tr:last-child td { border-bottom: none; }
+  .q-table td:first-child { text-align: left; padding-left: 12px; font-size: 13px; border-right: 1px solid rgba(0,0,0,0.1); }
+  .q-table td:last-child { border-right: none; }
+  .q-table td.total { font-size: 17px; font-weight: 700; }
+  .q-table td.loser-score { color: rgba(0,0,0,0.35); }
+
+  .box-wrap {
+    margin: 10px 0 0;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .box-label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--text-dim); text-transform: uppercase;
+    padding: 6px 14px;
+    background: #FAFAFA;
+    border-bottom: 1px solid var(--border);
+  }
+  .box-scroll {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+  .box-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: max-content;
+  }
+
+  .fix {
+    position: sticky; left: 0; z-index: 3;
+    width: var(--fix-w); min-width: var(--fix-w);
+    border-right: 1px solid var(--border-dark);
+  }
+
+  .sec-row td {
+    height: var(--sec-h);
+    background: var(--section-bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .sec-row td.fix {
+    background: var(--section-bg);
+    z-index: 4;
+  }
+  .sec-fix-inner {
+    display: flex; align-items: center;
+    height: var(--sec-h); padding: 0 10px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 10px; font-weight: 700;
+    color: var(--section-text);
+  }
+  .sec-stat {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    color: var(--text-dim); text-align: right;
+    width: 38px; min-width: 38px;
+    padding-right: 5px;
+  }
+
+  .p-row td {
+    height: var(--cell-h);
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+  }
+  .p-row td.fix { background: var(--white); z-index: 4; }
+  .p-row:last-child td { border-bottom: none; }
+  .p-row:active td { background: #F8F8F8; }
+  .p-row:active td.fix { background: #F8F8F8; }
+
+  .fix-inner {
+    display: flex; align-items: center; gap: 4px;
+    height: var(--cell-h); padding: 0 8px;
+  }
+  .p-num {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; color: var(--text-dim);
+    min-width: 18px; flex-shrink: 0; text-align: center;
+  }
+  .p-name {
+    font-size: 11.5px; font-weight: 700;
+    color: var(--text-primary);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    flex: 1;
+  }
+  .p-pos {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 9.5px; font-weight: 600; color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .s {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-primary); text-align: right;
+    width: 38px; min-width: 38px;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding-right: 5px;
+  }
+  .s-pts { font-weight: 700; color: #111; }
+  .s-dim { color: #AAA; }
+  .pm-p { color: #059669; }
+  .pm-n { color: #CC0000; }
+  .pm-z { color: var(--text-dim); }
+
+  .dnp-row td {
+    height: var(--cell-h);
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+  }
+  .dnp-row td.fix { background: var(--white); z-index: 4; }
+  .dnp-cell {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    color: var(--text-dim); vertical-align: middle;
+    padding-left: 8px;
+  }
+
+  .team-switcher {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+    display: flex; height: 48px;
+    background: var(--white);
+    border-top: 1px solid var(--border-dark);
+  }
+  .t-btn {
+    flex: 1; border: none; background: none; cursor: pointer;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--text-dim);
+    transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .t-btn.active { background: var(--header-bg); color: white; }
+  .t-btn:not(.active):active { background: #EFEFEF; }
+  .t-flag { font-size: 15px; }
+
+  .flag-circle-img {
+    width: 26px; height: 26px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .totals-row td {
+    height: 28px;
+    background: #F7F7F7;
+    border-top: 2px solid var(--border-dark);
+  }
+  .totals-row td.fix { background: #F7F7F7; z-index: 4; }
+  .totals-fix-inner {
+    display: flex; align-items: center;
+    height: 28px; padding: 0 8px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--text-primary);
+  }
+  .s-tot {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 700;
+    color: var(--text-primary); text-align: right;
+    width: 38px; min-width: 38px;
+    white-space: nowrap; vertical-align: middle;
+    padding-right: 5px;
+  }
+
+  /* ── RESPONSIVE: Tablet & PC ── */
+  @media (min-width: 900px) {
+    :root { --fix-w: 200px; --cell-h: 34px; --sec-h: 26px; }
+    .box-wrap { margin: 10px 12px 0; border-radius: 8px; }
+    .box-table { table-layout: auto; width: 100%; }
+    .fix { min-width: var(--fix-w); max-width: var(--fix-w); }
+    .s, .s-tot { width: auto; min-width: 44px; font-size: 13px; padding-right: 8px; }
+    .sec-stat  { width: auto; min-width: 44px; font-size: 11px; padding-right: 8px; }
+    .p-name { font-size: 13px; }
+    .p-num  { font-size: 12px; min-width: 22px; }
+    .fix-inner, .totals-fix-inner { padding: 0 12px; }
+    .sec-fix-inner { padding: 0 14px; }
+    .quarters-wrap { max-width: 700px; margin: 10px auto 0; }
+  }
+  @media (min-width: 1400px) {
+    :root { --fix-w: 240px; --cell-h: 38px; --sec-h: 30px; }
+    .s, .s-tot { min-width: 52px; font-size: 14px; }
+    .sec-stat  { min-width: 52px; font-size: 12px; }
+    .p-name { font-size: 14.5px; }
+    .p-num  { font-size: 13px; }
+    .p-pos  { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GAME HEADER -->
+<div class="game-header">
+  <div class="score-bar">
+    <a href="../index.html" class="back-btn">←</a>
+
+    <div class="score-area">
+      <!-- 左チーム: JPN (勝者) -->
+      <div class="score-team left">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTUiIGN5PSIxMCIgcj0iNiIgZmlsbD0iI2JjMDAyZCIvPjwvc3ZnPg==" class="flag-circle-img" alt="JPN">
+        <div class="team-info">
+          <span class="team-abbr">JPN</span>
+          <span class="team-record">U17 Women's</span>
+        </div>
+        <span class="team-score">81</span>
+      </div>
+
+      <!-- 中央 -->
+      <div class="score-center">
+        <span class="final-badge">FINAL</span>
+        <span class="game-period">4Q</span>
+      </div>
+
+      <!-- 右チーム: GER (敗者) -->
+      <div class="score-team right">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+PHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjciIGZpbGw9IiMwMDAiLz48cmVjdCB5PSI3IiB3aWR0aD0iMzAiIGhlaWdodD0iNyIgZmlsbD0iI0REMDAwMCIvPjxyZWN0IHk9IjE0IiB3aWR0aD0iMzAiIGhlaWdodD0iNiIgZmlsbD0iI0ZGQ0MwMCIvPjwvc3ZnPg==" class="flag-circle-img" alt="GER">
+        <div class="team-info">
+          <span class="team-abbr">GER</span>
+          <span class="team-record">U17 Women's</span>
+        </div>
+        <span class="team-score loser">61</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- メタ情報 -->
+  <div class="game-meta-bar">
+    <span class="game-meta">Apr 9, 2026</span>
+    <span class="meta-dot">·</span>
+    <span class="game-meta">4 Nations</span>
+    <span class="meta-dot">·</span>
+    <span class="game-meta">U17 Women's</span>
+  </div>
+</div>
+
+<!-- QUARTER SCORES -->
+<div class="quarters-wrap">
+  <div class="section-title">RUNNING SCORE</div>
+  <table class="q-table">
+    <thead>
+      <tr><th></th><th>1Q</th><th>2Q</th><th>3Q</th><th>4Q</th><th>T</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🇯🇵 JPN</td>
+        <td>21</td><td>22</td><td>24</td><td>14</td>
+        <td class="total">81</td>
+      </tr>
+      <tr>
+        <td>🇩🇪 GER</td>
+        <td>23</td><td>18</td><td>2</td><td>18</td>
+        <td class="total loser-score">61</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BOX SCORE -->
+<div class="box-wrap">
+  <div class="box-label">BOX SCORE</div>
+  <div class="box-scroll">
+    <table class="box-table" id="box-table"></table>
+  </div>
+</div>
+
+<!-- BOTTOM SWITCHER -->
+<div class="team-switcher">
+  <button class="t-btn active" onclick="switchTeam('jpn', this)">
+    <span class="t-flag">🇯🇵</span> JPN
+  </button>
+  <button class="t-btn" onclick="switchTeam('ger', this)">
+    <span class="t-flag">🇩🇪</span> GER
+  </button>
+</div>
+
+<script>
+const COLS = [
+  'MIN','PTS','REB','AST','STL','BLK',
+  'FGM','FGA','FG%',
+  '3PM','3PA','3P%',
+  'FTM','FTA','FT%',
+  'OREB','DREB','TOV','PF','+/-'
+];
+
+function pct(v) { return v === null ? '-' : v.toFixed(1); }
+function pm(v)  { return v > 0 ? '+' + v : String(v); }
+function pmCls(v) { return v > 0 ? 'pm-p' : v < 0 ? 'pm-n' : 'pm-z'; }
+function formatMin(m) {
+  if (!m || m === '-') return m;
+  const parts = m.split(':');
+  return parts[0].padStart(2, '0') + ':' + (parts[1] || '00');
+}
+
+function vals(p) {
+  return [
+    formatMin(p.min), p.pts, p.reb, p.ast, p.stl, p.blk,
+    p.fgm, p.fga, pct(p.fg),
+    p.tpm, p.tpa, pct(p.tp),
+    p.ftm, p.fta, pct(p.ft),
+    p.oreb, p.dreb, p.tov, p.pf, pm(p.pm)
+  ];
+}
+function cls(i, p) {
+  if (i === 1)  return 's s-pts';
+  if (i === 19) return `s ${pmCls(p.pm)}`;
+  return 's';
+}
+
+function secRow(label) {
+  return `<tr class="sec-row">
+    <td class="fix"><div class="sec-fix-inner">${label}</div></td>
+    ${COLS.map(c => `<td class="sec-stat">${c}</td>`).join('')}
+  </tr>`;
+}
+
+function playerRow(p) {
+  if (p.dnp) return `<tr class="dnp-row">
+    <td class="fix"><div class="fix-inner">
+      <span class="p-num">${p.num}</span>
+      <span class="p-name">${p.name}</span>
+      <span class="p-pos">${p.pos}</span>
+    </div></td>
+    <td class="dnp-cell" colspan="${COLS.length}">DNP</td>
+  </tr>`;
+
+  const v = vals(p);
+  return `<tr class="p-row">
+    <td class="fix"><div class="fix-inner">
+      <span class="p-num">${p.num}</span>
+      <span class="p-name">${p.name}</span>
+      <span class="p-pos">${p.pos}</span>
+    </div></td>
+    ${v.map((x, i) => `<td class="${cls(i, p)}">${x === 0 && i !== 19 ? '0' : x}</td>`).join('')}
+  </tr>`;
+}
+
+// ── JAPAN DATA (U17 Women's) ──
+const jpnStarters = [
+  { num:6,  name:'小林',   pos:'F', min:'26:40', pts:11, reb:6,  ast:3, stl:1, blk:0, fgm:4, fga:5,  fg:80.0,  tpm:1, tpa:3, tp:33.3,  ftm:0, fta:0, ft:null,  oreb:2, dreb:4, tov:1, pf:1, pm:19  },
+  { num:14, name:'大槻',   pos:'G', min:'26:54', pts:19, reb:5,  ast:3, stl:2, blk:1, fgm:2, fga:5,  fg:40.0,  tpm:1, tpa:7, tp:14.3,  ftm:12,fta:17,ft:70.6,  oreb:1, dreb:4, tov:3, pf:1, pm:34  },
+  { num:15, name:'竹内',   pos:'G', min:'24:24', pts:15, reb:0,  ast:5, stl:2, blk:0, fgm:5, fga:11, fg:45.5,  tpm:1, tpa:2, tp:50.0,  ftm:2, fta:2, ft:100.0, oreb:0, dreb:0, tov:3, pf:2, pm:8   },
+  { num:16, name:'安藤',   pos:'F', min:'20:47', pts:7,  reb:2,  ast:0, stl:2, blk:0, fgm:2, fga:3,  fg:66.7,  tpm:1, tpa:6, tp:16.7,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:0, pf:1, pm:25  },
+  { num:72, name:'今井',   pos:'C', min:'22:17', pts:3,  reb:6,  ast:0, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,   tpm:1, tpa:1, tp:100.0, ftm:0, fta:0, ft:null,  oreb:2, dreb:4, tov:1, pf:0, pm:21  },
+];
+const jpnBench = [
+  { num:7,  name:'清水',   pos:'C', min:'18:24', pts:0,  reb:3,  ast:0, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,   tpm:0, tpa:1, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:2, dreb:1, tov:0, pf:1, pm:-6  },
+  { num:13, name:'権藤',   pos:'G', min:'23:10', pts:17, reb:2,  ast:0, stl:3, blk:0, fgm:1, fga:3,  fg:33.3,  tpm:5, tpa:10,tp:50.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:1, pf:2, pm:4   },
+  { num:18, name:'難波',   pos:'G', min:'15:53', pts:2,  reb:4,  ast:4, stl:2, blk:0, fgm:1, fga:1,  fg:100.0, tpm:0, tpa:3, tp:0.0,   ftm:0, fta:2, ft:0.0,   oreb:1, dreb:3, tov:3, pf:4, pm:0   },
+  { num:20, name:'中澤',   pos:'F', min:'21:11', pts:7,  reb:3,  ast:0, stl:2, blk:0, fgm:2, fga:2,  fg:100.0, tpm:1, tpa:1, tp:100.0, ftm:0, fta:2, ft:0.0,   oreb:2, dreb:1, tov:1, pf:3, pm:-5  },
+  { num:11, name:'加地',   pos:'F', dnp:true },
+  { num:39, name:'渡邉',   pos:'F', dnp:true },
+  { num:48, name:'安井',   pos:'G', dnp:true },
+];
+
+// ── GERMANY DATA (U17 Women's) ──
+const gerStarters = [
+  { num:1,  name:'N.Koletzki',      pos:'G', min:'16:45', pts:5,  reb:1,  ast:0, stl:0, blk:0, fgm:2, fga:3,  fg:66.7,  tpm:0, tpa:0, tp:null,  ftm:1, fta:2, ft:50.0,  oreb:1, dreb:0, tov:3, pf:3, pm:-21 },
+  { num:7,  name:'K.Paradzik',      pos:'F', min:'22:26', pts:7,  reb:1,  ast:0, stl:1, blk:0, fgm:3, fga:3,  fg:100.0, tpm:0, tpa:1, tp:0.0,   ftm:1, fta:2, ft:50.0,  oreb:0, dreb:1, tov:0, pf:2, pm:-13 },
+  { num:8,  name:'D.Zraychenko',    pos:'G', min:'31:52', pts:12, reb:3,  ast:0, stl:1, blk:0, fgm:5, fga:9,  fg:55.6,  tpm:0, tpa:3, tp:0.0,   ftm:2, fta:4, ft:50.0,  oreb:0, dreb:3, tov:2, pf:3, pm:-24 },
+  { num:13, name:'M.Wiegand',       pos:'F', min:'24:27', pts:11, reb:6,  ast:3, stl:2, blk:0, fgm:3, fga:3,  fg:100.0, tpm:1, tpa:4, tp:25.0,  ftm:2, fta:2, ft:100.0, oreb:1, dreb:5, tov:2, pf:1, pm:2   },
+  { num:17, name:'C.Koch',          pos:'G', min:'19:40', pts:9,  reb:3,  ast:1, stl:1, blk:0, fgm:2, fga:4,  fg:50.0,  tpm:1, tpa:4, tp:25.0,  ftm:2, fta:2, ft:100.0, oreb:0, dreb:3, tov:6, pf:3, pm:-8  },
+];
+const gerBench = [
+  { num:4,  name:'L.Knaup',         pos:'G', min:'13:33', pts:4,  reb:2,  ast:2, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,   tpm:1, tpa:3, tp:33.3,  ftm:1, fta:2, ft:50.0,  oreb:0, dreb:2, tov:0, pf:1, pm:-14 },
+  { num:5,  name:'E.Haux',          pos:'G', min:'11:05', pts:5,  reb:1,  ast:0, stl:0, blk:0, fgm:1, fga:1,  fg:100.0, tpm:1, tpa:1, tp:100.0, ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:0, pf:0, pm:1   },
+  { num:10, name:'D.Ivancic',       pos:'F', min:'18:20', pts:6,  reb:3,  ast:2, stl:0, blk:0, fgm:3, fga:6,  fg:50.0,  tpm:0, tpa:0, tp:null,  ftm:0, fta:2, ft:0.0,   oreb:0, dreb:3, tov:2, pf:0, pm:-17 },
+  { num:11, name:'K.Lischka',       pos:'G', min:'10:44', pts:0,  reb:2,  ast:1, stl:0, blk:0, fgm:0, fga:2,  fg:0.0,   tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:1, dreb:1, tov:3, pf:1, pm:4   },
+  { num:12, name:'L.Gierlich',      pos:'F', min:'17:12', pts:2,  reb:3,  ast:0, stl:0, blk:1, fgm:1, fga:1,  fg:100.0, tpm:0, tpa:2, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:3, tov:2, pf:2, pm:-8  },
+  { num:15, name:'L.Bjeltschik',    pos:'F', min:'09:59', pts:0,  reb:3,  ast:0, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:0, dreb:3, tov:0, pf:3, pm:-7  },
+  { num:24, name:'A.Röhrl',         pos:'G', min:'03:37', pts:0,  reb:1,  ast:0, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,   tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:0, pf:0, pm:5   },
+];
+
+// ── TOTALS ──
+const jpnTot = { pts:81, reb:31, ast:15, stl:14, blk:1, fgm:17, fga:32, fg:53.1, tpm:11, tpa:34, tp:32.4, ftm:14, fta:23, ft:60.9, oreb:10, dreb:21, tov:13, pf:15 };
+const gerTot = { pts:61, reb:29, ast:9, stl:5, blk:1, fgm:20, fga:34, fg:58.8, tpm:4, tpa:18, tp:22.2, ftm:9, fta:16, ft:56.3, oreb:3, dreb:26, tov:20, pf:19 };
+
+// ── RENDER ──
+function totalsRow(tot) {
+  const v = [
+    '-', tot.pts, tot.reb, tot.ast, tot.stl, tot.blk,
+    tot.fgm, tot.fga, tot.fg.toFixed(1),
+    tot.tpm, tot.tpa, tot.tp.toFixed(1),
+    tot.ftm, tot.fta, tot.ft.toFixed(1),
+    tot.oreb, tot.dreb, tot.tov, tot.pf, '-'
+  ];
+  return `<tr class="totals-row">
+    <td class="fix"><div class="totals-fix-inner">TOTALS</div></td>
+    ${v.map(x => `<td class="s-tot">${x}</td>`).join('')}
+  </tr>`;
+}
+
+function render(starters, bench, tot) {
+  const sorted = [...bench].sort((a,b) => (a.dnp ? 1 : 0) - (b.dnp ? 1 : 0));
+  const t = document.getElementById('box-table');
+  let h = '<tbody>';
+  h += secRow('スターティング5');
+  starters.forEach(p => h += playerRow(p));
+  h += secRow('ベンチメンバー');
+  sorted.forEach(p => h += playerRow(p));
+  h += totalsRow(tot);
+  h += '</tbody>';
+  t.innerHTML = h;
+}
+
+function switchTeam(team, btn) {
+  document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render(team === 'jpn' ? jpnStarters : gerStarters,
+         team === 'jpn' ? jpnBench    : gerBench,
+         team === 'jpn' ? jpnTot      : gerTot);
+}
+
+render(jpnStarters, jpnBench, jpnTot);
+</script>
+</body>
+</html>

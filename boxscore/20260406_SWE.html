@@ -499,7 +499,7 @@ const sweStarters = [
   { num:10, name:'F.Karlsson',  pos:'PG', min:'21:25', pts:10, reb:5,  ast:3, stl:0, blk:1, fgm:4,  fga:6,  fg:66.7,  tpm:1, tpa:3, tp:33.3, ftm:1, fta:1, ft:100.0,oreb:1, dreb:4, tov:1, pf:1, pm:9  },
   { num:13, name:'N.Kartal',    pos:'SF', min:'21:34', pts:6,  reb:5,  ast:2, stl:1, blk:0, fgm:3,  fga:4,  fg:75.0,  tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null, oreb:2, dreb:3, tov:0, pf:3, pm:3  },
   { num:15, name:'B.Ottosson',  pos:'PF', min:'22:29', pts:10, reb:5,  ast:1, stl:0, blk:1, fgm:4,  fga:7,  fg:57.1,  tpm:2, tpa:2, tp:100.0,ftm:0, fta:0, ft:null, oreb:2, dreb:3, tov:2, pf:3, pm:-9 },
-  { num:20, name:'M.Odinks',    pos:'PF', min:'33:42', pts:16, reb:4,  ast:3, stl:0, blk:1, fgm:4,  fga:14, fg:28.6,  tpm:3, tpa:8, tp:37.5, ftm:3, fta:4, ft:75.0, oreb:0, dreb:4, tov:3, pf:4, pm:-13 },
+  { num:20, name:'M.Odinks',    pos:'PF', min:'33:42', pts:16, reb:4,  ast:3, stl:0, blk:1, fgm:5,  fga:14, fg:35.7,  tpm:3, tpa:8, tp:37.5, ftm:3, fta:4, ft:75.0, oreb:0, dreb:4, tov:3, pf:4, pm:-13 },
 ];
 const sweBench = [
   { num:5,  name:'S.Johansson', pos:'PF', min:'17:31', pts:6,  reb:1,  ast:2, stl:0, blk:0, fgm:2,  fga:4,  fg:50.0,  tpm:0, tpa:0, tp:null, ftm:2, fta:6, ft:33.3, oreb:0, dreb:1, tov:1, pf:1, pm:-3 },
@@ -528,8 +528,8 @@ function render(starters, bench, tot) {
   t.innerHTML = h;
 }
 
-const jpnTot = { pts:97, reb:42, ast:10, stl:11, blk:5, fgm:30, fga:57, fg:52.6, tpm:7, tpa:18, tp:38.9, ftm:16, fta:23, ft:69.6, oreb:15, dreb:27, tov:8,  pf:19 };
-const sweTot = { pts:84, reb:33, ast:17, stl:3,  blk:3, fgm:18, fga:37, fg:48.6, tpm:12,tpa:27, tp:44.4, ftm:12, fta:19, ft:63.2, oreb:9,  dreb:24, tov:16, pf:17 };
+const jpnTot = { pts:97, reb:42, ast:10, stl:11, blk:5, fgm:37, fga:75, fg:49.3, tpm:7, tpa:18, tp:38.9, ftm:16, fta:23, ft:69.6, oreb:15, dreb:27, tov:8,  pf:19 };
+const sweTot = { pts:84, reb:33, ast:17, stl:3,  blk:3, fgm:30, fga:64, fg:46.9, tpm:12,tpa:27, tp:44.4, ftm:12, fta:19, ft:63.2, oreb:9,  dreb:24, tov:16, pf:17 };
 
 function switchTeam(team, btn) {
   document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('active'));

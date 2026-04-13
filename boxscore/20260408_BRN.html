@@ -491,43 +491,43 @@ function playerRow(p) {
 
 // ── JAPAN DATA ──
 const jpnStarters = [
-  { num:5,  name:'恒岡',        pos:'PF',    min:'19:35', pts:13, reb:7,  ast:0, stl:0, blk:0, fgm:5, fga:6,  fg:83.3,  tpm:1, tpa:1, tp:100.0, ftm:0, fta:2,  ft:0.0,   oreb:4, dreb:3,  tov:0, pf:2, pm:13  },
-  { num:6,  name:'トンプソン',  pos:'SG',    min:'20:31', pts:6,  reb:0,  ast:5, stl:0, blk:0, fgm:1, fga:4,  fg:25.0,  tpm:1, tpa:1, tp:100.0, ftm:1, fta:2,  ft:50.0,  oreb:0, dreb:0,  tov:2, pf:4, pm:7   },
+  { num:5,  name:'恒岡',        pos:'PF',    min:'19:35', pts:13, reb:7,  ast:0, stl:0, blk:0, fgm:6, fga:7,  fg:85.7,  tpm:1, tpa:1, tp:100.0, ftm:0, fta:2,  ft:0.0,   oreb:4, dreb:3,  tov:0, pf:2, pm:13  },
+  { num:6,  name:'トンプソン',  pos:'SG',    min:'20:31', pts:6,  reb:0,  ast:5, stl:0, blk:0, fgm:2, fga:5,  fg:40.0,  tpm:1, tpa:1, tp:100.0, ftm:1, fta:2,  ft:50.0,  oreb:0, dreb:0,  tov:2, pf:4, pm:7   },
   { num:7,  name:'櫻井',        pos:'PG',    min:'20:28', pts:6,  reb:4,  ast:3, stl:4, blk:0, fgm:2, fga:4,  fg:50.0,  tpm:0, tpa:0, tp:null,  ftm:2, fta:2,  ft:100.0, oreb:3, dreb:1,  tov:0, pf:0, pm:8   },
-  { num:13, name:'本田',        pos:'SF',    min:'21:43', pts:14, reb:2,  ast:0, stl:2, blk:0, fgm:4, fga:6,  fg:66.7,  tpm:1, tpa:4, tp:25.0,  ftm:3, fta:4,  ft:75.0,  oreb:0, dreb:2,  tov:5, pf:1, pm:10  },
-  { num:15, name:'白谷',        pos:'PF',    min:'23:53', pts:10, reb:10, ast:0, stl:1, blk:2, fgm:1, fga:4,  fg:25.0,  tpm:1, tpa:4, tp:25.0,  ftm:5, fta:7,  ft:71.4,  oreb:0, dreb:10, tov:5, pf:3, pm:0   },
+  { num:13, name:'本田',        pos:'SF',    min:'21:43', pts:14, reb:2,  ast:0, stl:2, blk:0, fgm:5, fga:10, fg:50.0,  tpm:1, tpa:4, tp:25.0,  ftm:3, fta:4,  ft:75.0,  oreb:0, dreb:2,  tov:5, pf:1, pm:10  },
+  { num:15, name:'白谷',        pos:'PF',    min:'23:53', pts:10, reb:10, ast:0, stl:1, blk:2, fgm:2, fga:8,  fg:25.0,  tpm:1, tpa:4, tp:25.0,  ftm:5, fta:7,  ft:71.4,  oreb:0, dreb:10, tov:5, pf:3, pm:0   },
 ];
 const jpnBench = [
-  { num:4,  name:'今野',        pos:'PF',    min:'13:47', pts:6,  reb:0,  ast:1, stl:2, blk:0, fgm:1, fga:3,  fg:33.3,  tpm:1, tpa:2, tp:50.0,  ftm:1, fta:2, ft:50.0,  oreb:0, dreb:0, tov:1, pf:2, pm:5   },
-  { num:9,  name:'音山',        pos:'SF',    min:'06:26', pts:0,  reb:0,  ast:1, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:0, tpa:2, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:0, pf:0, pm:6   },
-  { num:10, name:'マクミラン',  pos:'PF',    min:'16:16', pts:6,  reb:3,  ast:0, stl:0, blk:0, fgm:0, fga:2,  fg:0.0,   tpm:2, tpa:5, tp:40.0,  ftm:0, fta:0, ft:null,  oreb:1, dreb:2, tov:0, pf:0, pm:-1  },
-  { num:11, name:'髙橋',        pos:'SG/SF', min:'14:38', pts:3,  reb:1,  ast:0, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:1, tpa:4, tp:25.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:0, pf:3, pm:-14 },
-  { num:12, name:'藤原',        pos:'SG',    min:'19:27', pts:12, reb:1,  ast:6, stl:2, blk:0, fgm:1, fga:2,  fg:50.0,  tpm:1, tpa:1, tp:100.0, ftm:7, fta:7, ft:100.0, oreb:0, dreb:1, tov:1, pf:1, pm:3   },
-  { num:16, name:'中村',        pos:'SF',    min:'18:47', pts:11, reb:2,  ast:3, stl:2, blk:0, fgm:2, fga:3,  fg:66.7,  tpm:2, tpa:6, tp:33.3,  ftm:1, fta:1, ft:100.0, oreb:1, dreb:1, tov:0, pf:3, pm:19  },
-  { num:18, name:'イヘツ',      pos:'SF',    min:'04:04', pts:3,  reb:0,  ast:1, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:1, tpa:1, tp:100.0, ftm:0, fta:3, ft:0.0,   oreb:0, dreb:0, tov:0, pf:1, pm:-1  },
+  { num:4,  name:'今野',        pos:'PF',    min:'13:47', pts:6,  reb:0,  ast:1, stl:2, blk:0, fgm:2, fga:5,  fg:40.0,  tpm:1, tpa:2, tp:50.0,  ftm:1, fta:2, ft:50.0,  oreb:0, dreb:0, tov:1, pf:2, pm:5   },
+  { num:9,  name:'音山',        pos:'SF',    min:'06:26', pts:0,  reb:0,  ast:1, stl:0, blk:0, fgm:0, fga:2,  fg:0.0,   tpm:0, tpa:2, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:0, pf:0, pm:6   },
+  { num:10, name:'マクミラン',  pos:'PF',    min:'16:16', pts:6,  reb:3,  ast:0, stl:0, blk:0, fgm:2, fga:7,  fg:28.6,  tpm:2, tpa:5, tp:40.0,  ftm:0, fta:0, ft:null,  oreb:1, dreb:2, tov:0, pf:0, pm:-1  },
+  { num:11, name:'髙橋',        pos:'SG/SF', min:'14:38', pts:3,  reb:1,  ast:0, stl:0, blk:0, fgm:1, fga:4,  fg:25.0,  tpm:1, tpa:4, tp:25.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:0, pf:3, pm:-14 },
+  { num:12, name:'藤原',        pos:'SG',    min:'19:27', pts:12, reb:1,  ast:6, stl:2, blk:0, fgm:2, fga:3,  fg:66.7,  tpm:1, tpa:1, tp:100.0, ftm:7, fta:7, ft:100.0, oreb:0, dreb:1, tov:1, pf:1, pm:3   },
+  { num:16, name:'中村',        pos:'SF',    min:'18:47', pts:11, reb:2,  ast:3, stl:2, blk:0, fgm:4, fga:9,  fg:44.4,  tpm:2, tpa:6, tp:33.3,  ftm:1, fta:1, ft:100.0, oreb:1, dreb:1, tov:0, pf:3, pm:19  },
+  { num:18, name:'イヘツ',      pos:'SF',    min:'04:04', pts:3,  reb:0,  ast:1, stl:0, blk:0, fgm:1, fga:1,  fg:100.0,  tpm:1, tpa:1, tp:100.0, ftm:0, fta:3, ft:0.0,   oreb:0, dreb:0, tov:0, pf:1, pm:-1  },
 ];
 
 // ── BAHRAIN DATA ──
 const brnStarters = [
-  { num:3,  name:'M.Baqer',       pos:'SF', min:'21:59', pts:11, reb:2,  ast:0, stl:0, blk:0, fgm:4,  fga:6,  fg:66.7, tpm:0, tpa:5,  tp:0.0,  ftm:3, fta:5,  ft:60.0,  oreb:0, dreb:2,  tov:2, pf:5, pm:-4  },
-  { num:8,  name:'A.Mohamed',     pos:'SG', min:'32:56', pts:7,  reb:1,  ast:2, stl:3, blk:0, fgm:2,  fga:2,  fg:100.0,tpm:1, tpa:2,  tp:50.0, ftm:0, fta:0,  ft:null,  oreb:0, dreb:1,  tov:5, pf:2, pm:-9  },
-  { num:10, name:'A.Barhoom',     pos:'SG', min:'23:22', pts:7,  reb:1,  ast:0, stl:0, blk:0, fgm:1,  fga:4,  fg:25.0, tpm:1, tpa:3,  tp:33.3, ftm:2, fta:2,  ft:100.0, oreb:0, dreb:1,  tov:4, pf:4, pm:-15 },
-  { num:20, name:'S.Onoduenyi',   pos:'PF', min:'37:35', pts:14, reb:15, ast:9, stl:2, blk:0, fgm:4,  fga:8,  fg:50.0, tpm:2, tpa:7,  tp:28.6, ftm:0, fta:0,  ft:null,  oreb:3, dreb:12, tov:5, pf:4, pm:-5  },
+  { num:3,  name:'M.Baqer',       pos:'SF', min:'21:59', pts:11, reb:2,  ast:0, stl:0, blk:0, fgm:4,  fga:11,  fg:36.4, tpm:0, tpa:5,  tp:0.0,  ftm:3, fta:5,  ft:60.0,  oreb:0, dreb:2,  tov:2, pf:5, pm:-4  },
+  { num:8,  name:'A.Mohamed',     pos:'SG', min:'32:56', pts:7,  reb:1,  ast:2, stl:3, blk:0, fgm:3,  fga:4,  fg:75.0,tpm:1, tpa:2,  tp:50.0, ftm:0, fta:0,  ft:null,  oreb:0, dreb:1,  tov:5, pf:2, pm:-9  },
+  { num:10, name:'A.Barhoom',     pos:'SG', min:'23:22', pts:7,  reb:1,  ast:0, stl:0, blk:0, fgm:2,  fga:7,  fg:28.6, tpm:1, tpa:3,  tp:33.3, ftm:2, fta:2,  ft:100.0, oreb:0, dreb:1,  tov:4, pf:4, pm:-15 },
+  { num:20, name:'S.Onoduenyi',   pos:'PF', min:'37:35', pts:14, reb:15, ast:9, stl:2, blk:0, fgm:6,  fga:15,  fg:40.0, tpm:2, tpa:7,  tp:28.6, ftm:0, fta:0,  ft:null,  oreb:3, dreb:12, tov:5, pf:4, pm:-5  },
   { num:34, name:'H.Abdulkadir',  pos:'C',  min:'33:57', pts:27, reb:19, ast:2, stl:3, blk:3, fgm:10, fga:13, fg:76.9, tpm:0, tpa:0,  tp:null, ftm:7, fta:10, ft:70.0,  oreb:7, dreb:12, tov:0, pf:3, pm:-5  },
 ];
 const brnBench = [
   { num:1,  name:'H.Madan',       pos:'PG', min:'05:27', pts:2,  reb:2,  ast:0, stl:1, blk:0, fgm:1, fga:3,  fg:33.3, tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null,  oreb:2, dreb:0, tov:0, pf:0, pm:-4  },
   { num:5,  name:'K.Alhasan',     pos:'G',  min:'03:05', pts:0,  reb:0,  ast:0, stl:0, blk:0, fgm:0, fga:0,  fg:null, tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:1, pf:2, pm:-8  },
-  { num:6,  name:'M.Adel',        pos:'SG', min:'16:43', pts:7,  reb:1,  ast:1, stl:1, blk:0, fgm:1, fga:4,  fg:25.0, tpm:1, tpa:2, tp:50.0, ftm:2, fta:2, ft:100.0, oreb:0, dreb:1, tov:1, pf:3, pm:12  },
+  { num:6,  name:'M.Adel',        pos:'SG', min:'16:43', pts:7,  reb:1,  ast:1, stl:1, blk:0, fgm:2, fga:6,  fg:33.3, tpm:1, tpa:2, tp:50.0, ftm:2, fta:2, ft:100.0, oreb:0, dreb:1, tov:1, pf:3, pm:12  },
   { num:12, name:'M.Farhan',      pos:'SF', min:'14:11', pts:2,  reb:2,  ast:0, stl:0, blk:0, fgm:1, fga:3,  fg:33.3, tpm:0, tpa:2, tp:0.0,  ftm:0, fta:0, ft:null,  oreb:1, dreb:1, tov:2, pf:1, pm:-6  },
-  { num:24, name:'H.Sharaf',      pos:'PG', min:'06:23', pts:2,  reb:1,  ast:0, stl:1, blk:0, fgm:1, fga:1,  fg:100.0,tpm:0, tpa:1, tp:0.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:2, pf:2, pm:-8  },
+  { num:24, name:'H.Sharaf',      pos:'PG', min:'06:23', pts:2,  reb:1,  ast:0, stl:1, blk:0, fgm:1, fga:2,  fg:50.0,tpm:0, tpa:1, tp:0.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:2, pf:2, pm:-8  },
   { num:25, name:'J.James',       pos:'G',  min:'01:11', pts:0,  reb:0,  ast:0, stl:0, blk:0, fgm:0, fga:0,  fg:null, tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:0, pf:0, pm:0   },
   { num:94, name:'A.Redha',       pos:'F',  min:'02:46', pts:0,  reb:0,  ast:0, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,  tpm:0, tpa:0, tp:null, ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:0, pf:0, pm:-3  },
 ];
 
 // ── TOTALS ──
-const jpnTot = { pts:90, reb:30, ast:20, stl:13, blk:2, fgm:17, fga:34, fg:50.0, tpm:12, tpa:31, tp:38.7, ftm:20, fta:30, ft:66.7, oreb:9,  dreb:21, tov:14, pf:20 };
-const brnTot = { pts:79, reb:44, ast:14, stl:11, blk:3, fgm:25, fga:45, fg:55.6, tpm:5,  tpa:22, tp:22.7, ftm:14, fta:19, ft:73.7, oreb:13, dreb:31, tov:22, pf:26 };
+const jpnTot = { pts:90, reb:30, ast:20, stl:13, blk:2, fgm:29, fga:65, fg:44.6, tpm:12, tpa:31, tp:38.7, ftm:20, fta:30, ft:66.7, oreb:9,  dreb:21, tov:14, pf:20 };
+const brnTot = { pts:79, reb:44, ast:14, stl:11, blk:3, fgm:30, fga:65, fg:46.2, tpm:5,  tpa:22, tp:22.7, ftm:14, fta:19, ft:73.7, oreb:13, dreb:31, tov:22, pf:26 };
 
 // ── RENDER ──
 function totalsRow(tot) {

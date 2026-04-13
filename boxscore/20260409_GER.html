@@ -486,10 +486,10 @@ function playerRow(p) {
 
 // ── JAPAN DATA ──
 const jpnStarters = [
-  { num:10, name:'マクミラン',  pos:'PF',    min:'22:17', pts:1,  reb:2,  ast:1, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:0, tpa:1, tp:0.0,   ftm:1, fta:2, ft:50.0,  oreb:1, dreb:1, tov:1, pf:1, pm:-15 },
-  { num:11, name:'髙橋',        pos:'SG/SF', min:'15:13', pts:6,  reb:2,  ast:0, stl:0, blk:0, fgm:0, fga:0,  fg:null,  tpm:2, tpa:4, tp:50.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:1, pf:2, pm:-8  },
-  { num:12, name:'藤原',        pos:'SG',    min:'19:55', pts:13, reb:2,  ast:1, stl:0, blk:0, fgm:1, fga:3,  fg:33.3,  tpm:3, tpa:7, tp:42.9,  ftm:2, fta:2, ft:100.0, oreb:1, dreb:1, tov:1, pf:1, pm:-16 },
-  { num:14, name:'ベネディクト', pos:'SF',    min:'29:30', pts:24, reb:7,  ast:3, stl:2, blk:2, fgm:9, fga:20, fg:45.0,  tpm:1, tpa:6, tp:16.7,  ftm:3, fta:4, ft:75.0,  oreb:1, dreb:6, tov:0, pf:3, pm:-16 },
+  { num:10, name:'マクミラン',  pos:'PF',    min:'22:17', pts:1,  reb:2,  ast:1, stl:0, blk:0, fgm:0, fga:1,  fg:0.0,   tpm:0, tpa:1, tp:0.0,   ftm:1, fta:2, ft:50.0,  oreb:1, dreb:1, tov:1, pf:1, pm:-15 },
+  { num:11, name:'髙橋',        pos:'SG/SF', min:'15:13', pts:6,  reb:2,  ast:0, stl:0, blk:0, fgm:2, fga:4,  fg:50.0,  tpm:2, tpa:4, tp:50.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:1, pf:2, pm:-8  },
+  { num:12, name:'藤原',        pos:'SG',    min:'19:55', pts:13, reb:2,  ast:1, stl:0, blk:0, fgm:4, fga:10, fg:40.0,  tpm:3, tpa:7, tp:42.9,  ftm:2, fta:2, ft:100.0, oreb:1, dreb:1, tov:1, pf:1, pm:-16 },
+  { num:14, name:'ベネディクト', pos:'SF',    min:'29:30', pts:24, reb:7,  ast:3, stl:2, blk:2, fgm:10, fga:26, fg:38.5,  tpm:1, tpa:6, tp:16.7,  ftm:3, fta:4, ft:75.0,  oreb:1, dreb:6, tov:0, pf:3, pm:-16 },
   { num:15, name:'白谷',        pos:'PF',    min:'31:44', pts:4,  reb:3,  ast:2, stl:1, blk:2, fgm:2, fga:9,  fg:22.2,  tpm:0, tpa:4, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:3, tov:4, pf:2, pm:-24 },
 ];
 const jpnBench = [
@@ -504,25 +504,25 @@ const jpnBench = [
 
 // ── GERMANY DATA ──
 const gerStarters = [
-  { num:1,  name:'J.Edoka',         pos:'SF', min:'18:34', pts:15, reb:8,  ast:3, stl:3, blk:2, fgm:6, fga:8,  fg:75.0,  tpm:1, tpa:2, tp:50.0,  ftm:0, fta:0, ft:null,  oreb:1, dreb:7, tov:0, pf:4, pm:17  },
-  { num:2,  name:'L.Anderson',      pos:'PG', min:'24:13', pts:8,  reb:0,  ast:4, stl:1, blk:0, fgm:1, fga:9,  fg:11.1,  tpm:2, tpa:4, tp:50.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:3, pf:2, pm:21  },
+  { num:1,  name:'J.Edoka',         pos:'SF', min:'18:34', pts:15, reb:8,  ast:3, stl:3, blk:2, fgm:7, fga:10, fg:70.0,  tpm:1, tpa:2, tp:50.0,  ftm:0, fta:0, ft:null,  oreb:1, dreb:7, tov:0, pf:4, pm:17  },
+  { num:2,  name:'L.Anderson',      pos:'PG', min:'24:13', pts:8,  reb:0,  ast:4, stl:1, blk:0, fgm:3, fga:13, fg:23.1,  tpm:2, tpa:4, tp:50.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:3, pf:2, pm:21  },
   { num:8,  name:'A.Kemmer',        pos:'SG', min:'14:09', pts:4,  reb:2,  ast:0, stl:0, blk:0, fgm:2, fga:4,  fg:50.0,  tpm:0, tpa:1, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:0, pf:0, pm:15  },
-  { num:10, name:'F.Borczanowski',  pos:'SG', min:'17:57', pts:16, reb:6,  ast:2, stl:0, blk:2, fgm:6, fga:9,  fg:66.7,  tpm:1, tpa:2, tp:50.0,  ftm:1, fta:2, ft:50.0,  oreb:3, dreb:3, tov:2, pf:0, pm:9   },
+  { num:10, name:'F.Borczanowski',  pos:'SG', min:'17:57', pts:16, reb:6,  ast:2, stl:0, blk:2, fgm:7, fga:11, fg:63.6,  tpm:1, tpa:2, tp:50.0,  ftm:1, fta:2, ft:50.0,  oreb:3, dreb:3, tov:2, pf:0, pm:9   },
   { num:26, name:'L.Kröger',        pos:'C',  min:'14:49', pts:7,  reb:16, ast:1, stl:0, blk:0, fgm:3, fga:5,  fg:60.0,  tpm:0, tpa:0, tp:null,  ftm:1, fta:2, ft:50.0,  oreb:8, dreb:8, tov:1, pf:0, pm:13  },
 ];
 const gerBench = [
-  { num:0,  name:'L.Danziger',      pos:'PG', min:'19:07', pts:11, reb:4,  ast:3, stl:2, blk:0, fgm:4, fga:5,  fg:80.0,  tpm:1, tpa:1, tp:100.0, ftm:0, fta:0, ft:null,  oreb:1, dreb:3, tov:0, pf:2, pm:18  },
+  { num:0,  name:'L.Danziger',      pos:'PG', min:'19:07', pts:11, reb:4,  ast:3, stl:2, blk:0, fgm:5, fga:6,  fg:83.3,  tpm:1, tpa:1, tp:100.0, ftm:0, fta:0, ft:null,  oreb:1, dreb:3, tov:0, pf:2, pm:18  },
   { num:3,  name:'W.Dopfer',        pos:'PF', min:'15:40', pts:6,  reb:9,  ast:2, stl:1, blk:0, fgm:3, fga:4,  fg:75.0,  tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:3, dreb:6, tov:3, pf:1, pm:10  },
   { num:5,  name:'D.Ilic',          pos:'PF', min:'15:37', pts:4,  reb:0,  ast:1, stl:1, blk:0, fgm:2, fga:5,  fg:40.0,  tpm:0, tpa:3, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:4, pf:1, pm:4   },
-  { num:6,  name:'M.Grüss',         pos:'SF', min:'14:00', pts:0,  reb:3,  ast:2, stl:0, blk:0, fgm:0, fga:3,  fg:0.0,   tpm:0, tpa:4, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:1, dreb:2, tov:1, pf:1, pm:3   },
-  { num:7,  name:'C.Vossenberg',    pos:'SF', min:'17:35', pts:17, reb:4,  ast:2, stl:1, blk:1, fgm:4, fga:7,  fg:57.1,  tpm:3, tpa:7, tp:42.9,  ftm:0, fta:0, ft:null,  oreb:1, dreb:3, tov:1, pf:0, pm:3   },
+  { num:6,  name:'M.Grüss',         pos:'SF', min:'14:00', pts:0,  reb:3,  ast:2, stl:0, blk:0, fgm:0, fga:7,  fg:0.0,   tpm:0, tpa:4, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:1, dreb:2, tov:1, pf:1, pm:3   },
+  { num:7,  name:'C.Vossenberg',    pos:'SF', min:'17:35', pts:17, reb:4,  ast:2, stl:1, blk:1, fgm:7, fga:14, fg:50.0,  tpm:3, tpa:7, tp:42.9,  ftm:0, fta:0, ft:null,  oreb:1, dreb:3, tov:1, pf:0, pm:3   },
   { num:12, name:'K.Youdom',        pos:'C',  min:'17:10', pts:6,  reb:2,  ast:0, stl:1, blk:0, fgm:3, fga:3,  fg:100.0, tpm:0, tpa:0, tp:null,  ftm:0, fta:1, ft:0.0,   oreb:0, dreb:2, tov:2, pf:1, pm:10  },
   { num:22, name:'K.Dück',          pos:'PF', min:'10:19', pts:9,  reb:7,  ast:0, stl:1, blk:0, fgm:3, fga:4,  fg:75.0,  tpm:0, tpa:0, tp:null,  ftm:3, fta:3, ft:100.0, oreb:2, dreb:5, tov:1, pf:0, pm:2   },
 ];
 
 // ── TOTALS ──
-const jpnTot = { pts:78, reb:32, ast:14, stl:8, blk:5, fgm:24, fga:56, fg:42.9, tpm:6, tpa:24, tp:25.0, ftm:12, fta:16, ft:75.0, oreb:11, dreb:21, tov:14, pf:15 };
-const gerTot = { pts:103, reb:61, ast:20, stl:11, blk:5, fgm:37, fga:66, fg:56.1, tpm:8, tpa:24, tp:33.3, ftm:5, fta:8, ft:62.5, oreb:20, dreb:41, tov:18, pf:12 };
+const jpnTot = { pts:78, reb:32, ast:14, stl:8, blk:5, fgm:30, fga:74, fg:40.5, tpm:6, tpa:24, tp:25.0, ftm:12, fta:16, ft:75.0, oreb:11, dreb:21, tov:14, pf:15 };
+const gerTot = { pts:103, reb:61, ast:20, stl:11, blk:5, fgm:45, fga:86, fg:52.3, tpm:8, tpa:24, tp:33.3, ftm:5, fta:8, ft:62.5, oreb:20, dreb:41, tov:18, pf:12 };
 
 // ── RENDER ──
 function totalsRow(tot) {

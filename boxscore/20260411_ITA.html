@@ -325,18 +325,18 @@ function playerRow(p) {
 
 // ── JAPAN DATA ──
 const jpnStarters = [
-  { num:10, name:'マクミラン',  pos:'PF',    min:'26:15', pts:3,  reb:5,  ast:1, stl:2, blk:0, fgm:1, fga:1,  fg:100.0, tpm:0, tpa:2, tp:0.0,   ftm:1, fta:2, ft:50.0,  oreb:1, dreb:4, tov:0, pf:1, pm:-12 },
-  { num:11, name:'髙橋',        pos:'SG/SF', min:'31:48', pts:5,  reb:3,  ast:1, stl:1, blk:0, fgm:1, fga:1,  fg:100.0, tpm:1, tpa:10,tp:10.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:3, tov:0, pf:1, pm:-12 },
-  { num:12, name:'藤原',        pos:'SG',    min:'18:49', pts:11, reb:0,  ast:2, stl:0, blk:0, fgm:4, fga:5,  fg:80.0,  tpm:1, tpa:3, tp:33.3,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:1, pf:2, pm:-22 },
-  { num:14, name:'ベネディクト', pos:'SF',    min:'25:29', pts:16, reb:4,  ast:0, stl:1, blk:1, fgm:4, fga:7,  fg:57.1,  tpm:2, tpa:6, tp:33.3,  ftm:2, fta:3, ft:66.7,  oreb:1, dreb:3, tov:2, pf:2, pm:-6  },
-  { num:15, name:'白谷',        pos:'PF',    min:'26:01', pts:12, reb:5,  ast:1, stl:0, blk:0, fgm:0, fga:2,  fg:0.0,   tpm:2, tpa:5, tp:40.0,  ftm:6, fta:9, ft:66.7,  oreb:0, dreb:5, tov:3, pf:4, pm:-1  },
+  { num:10, name:'マクミラン',  pos:'PF',    min:'26:15', pts:3,  reb:5,  ast:1, stl:2, blk:0, fgm:1, fga:3,  fg:33.3,  tpm:0, tpa:2, tp:0.0,   ftm:1, fta:2, ft:50.0,  oreb:1, dreb:4, tov:0, pf:1, pm:-12 },
+  { num:11, name:'髙橋',        pos:'SG/SF', min:'31:48', pts:5,  reb:3,  ast:1, stl:1, blk:0, fgm:2, fga:11, fg:18.2,  tpm:1, tpa:10,tp:10.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:3, tov:0, pf:1, pm:-12 },
+  { num:12, name:'藤原',        pos:'SG',    min:'18:49', pts:11, reb:0,  ast:2, stl:0, blk:0, fgm:5, fga:8,  fg:62.5,  tpm:1, tpa:3, tp:33.3,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:1, pf:2, pm:-22 },
+  { num:14, name:'ベネディクト', pos:'SF',    min:'25:29', pts:16, reb:4,  ast:0, stl:1, blk:1, fgm:6, fga:13, fg:46.2,  tpm:2, tpa:6, tp:33.3,  ftm:2, fta:3, ft:66.7,  oreb:1, dreb:3, tov:2, pf:2, pm:-6  },
+  { num:15, name:'白谷',        pos:'PF',    min:'26:01', pts:12, reb:5,  ast:1, stl:0, blk:0, fgm:2, fga:7,  fg:28.6,  tpm:2, tpa:5, tp:40.0,  ftm:6, fta:9, ft:66.7,  oreb:0, dreb:5, tov:3, pf:4, pm:-1  },
 ];
 const jpnBench = [
   { num:5,  name:'恒岡',        pos:'PF',    min:'10:11', pts:2,  reb:0,  ast:0, stl:0, blk:0, fgm:1, fga:1,  fg:100.0, tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:0, dreb:0, tov:0, pf:0, pm:-8  },
   { num:6,  name:'トンプソン',  pos:'SG',    min:'09:50', pts:4,  reb:1,  ast:0, stl:0, blk:1, fgm:1, fga:1,  fg:100.0, tpm:0, tpa:0, tp:null,  ftm:2, fta:3, ft:66.7,  oreb:1, dreb:0, tov:1, pf:0, pm:-9  },
   { num:7,  name:'櫻井',        pos:'PG',    min:'20:22', pts:5,  reb:5,  ast:1, stl:1, blk:1, fgm:2, fga:3,  fg:66.7,  tpm:0, tpa:0, tp:null,  ftm:1, fta:2, ft:50.0,  oreb:1, dreb:4, tov:1, pf:5, pm:-12 },
-  { num:13, name:'本田',        pos:'SF',    min:'21:03', pts:8,  reb:3,  ast:2, stl:2, blk:0, fgm:0, fga:5,  fg:0.0,   tpm:1, tpa:3, tp:33.3,  ftm:5, fta:8, ft:62.5,  oreb:1, dreb:2, tov:0, pf:2, pm:-9  },
-  { num:16, name:'中村',        pos:'SF',    min:'06:02', pts:2,  reb:1,  ast:0, stl:1, blk:0, fgm:1, fga:2,  fg:50.0,  tpm:0, tpa:3, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:0, pf:0, pm:-9  },
+  { num:13, name:'本田',        pos:'SF',    min:'21:03', pts:8,  reb:3,  ast:2, stl:2, blk:0, fgm:1, fga:8,  fg:12.5,  tpm:1, tpa:3, tp:33.3,  ftm:5, fta:8, ft:62.5,  oreb:1, dreb:2, tov:0, pf:2, pm:-9  },
+  { num:16, name:'中村',        pos:'SF',    min:'06:02', pts:2,  reb:1,  ast:0, stl:1, blk:0, fgm:1, fga:5,  fg:20.0,  tpm:0, tpa:3, tp:0.0,   ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:0, pf:0, pm:-9  },
   { num:18, name:'イヘツ',      pos:'SF',    min:'04:00', pts:2,  reb:1,  ast:1, stl:0, blk:0, fgm:1, fga:1,  fg:100.0, tpm:0, tpa:0, tp:null,  ftm:0, fta:0, ft:null,  oreb:1, dreb:0, tov:0, pf:0, pm:5   },
   { num:9,  name:'音山',        pos:'SF',    dnp:true },
 ];
@@ -344,24 +344,24 @@ const jpnBench = [
 // ── ITALY DATA ──
 const itaStarters = [
   { num:5,  name:'F.Bottelli',     pos:'SF', min:'18:05', pts:9,  reb:4,  ast:4, stl:0, blk:0, fgm:3, fga:5,  fg:60.0,  tpm:0, tpa:2, tp:0.0,   ftm:3, fta:6, ft:50.0,  oreb:0, dreb:4, tov:2, pf:0, pm:6   },
-  { num:6,  name:'L.Berlingeri',   pos:'SG', min:'20:26', pts:15, reb:2,  ast:1, stl:0, blk:1, fgm:3, fga:3,  fg:100.0, tpm:3, tpa:5, tp:60.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:2, pf:3, pm:1   },
-  { num:9,  name:'E.Di Meo',      pos:'PG', min:'19:18', pts:10, reb:2,  ast:3, stl:0, blk:0, fgm:2, fga:4,  fg:50.0,  tpm:2, tpa:3, tp:66.7,  ftm:0, fta:0, ft:null,  oreb:1, dreb:1, tov:1, pf:3, pm:14  },
-  { num:10, name:'F.Costaglione',  pos:'PG', min:'26:12', pts:8,  reb:7,  ast:4, stl:0, blk:0, fgm:2, fga:3,  fg:66.7,  tpm:1, tpa:1, tp:100.0, ftm:1, fta:2, ft:50.0,  oreb:1, dreb:6, tov:2, pf:0, pm:15  },
+  { num:6,  name:'L.Berlingeri',   pos:'SG', min:'20:26', pts:15, reb:2,  ast:1, stl:0, blk:1, fgm:6, fga:8,  fg:75.0,  tpm:3, tpa:5, tp:60.0,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:2, pf:3, pm:1   },
+  { num:9,  name:'E.Di Meo',      pos:'PG', min:'19:18', pts:10, reb:2,  ast:3, stl:0, blk:0, fgm:4, fga:7,  fg:57.1,  tpm:2, tpa:3, tp:66.7,  ftm:0, fta:0, ft:null,  oreb:1, dreb:1, tov:1, pf:3, pm:14  },
+  { num:10, name:'F.Costaglione',  pos:'PG', min:'26:12', pts:8,  reb:7,  ast:4, stl:0, blk:0, fgm:3, fga:4,  fg:75.0,  tpm:1, tpa:1, tp:100.0, ftm:1, fta:2, ft:50.0,  oreb:1, dreb:6, tov:2, pf:0, pm:15  },
   { num:18, name:'T.Acunzo',      pos:'C',  min:'17:55', pts:15, reb:9,  ast:0, stl:1, blk:2, fgm:7, fga:8,  fg:87.5,  tpm:0, tpa:1, tp:0.0,   ftm:1, fta:1, ft:100.0, oreb:2, dreb:7, tov:1, pf:1, pm:5   },
 ];
 const itaBench = [
   { num:7,  name:'G.Turconi',     pos:'SG', dnp:true },
-  { num:11, name:'A.Dinoia',      pos:'SG', min:'17:18', pts:7,  reb:3,  ast:0, stl:0, blk:0, fgm:2, fga:4,  fg:50.0,  tpm:1, tpa:3, tp:33.3,  ftm:0, fta:0, ft:null,  oreb:1, dreb:2, tov:1, pf:2, pm:8   },
+  { num:11, name:'A.Dinoia',      pos:'SG', min:'17:18', pts:7,  reb:3,  ast:0, stl:0, blk:0, fgm:3, fga:7,  fg:42.9,  tpm:1, tpa:3, tp:33.3,  ftm:0, fta:0, ft:null,  oreb:1, dreb:2, tov:1, pf:2, pm:8   },
   { num:12, name:'A.Charfi',      pos:'C',  min:'15:58', pts:3,  reb:3,  ast:1, stl:0, blk:1, fgm:1, fga:3,  fg:33.3,  tpm:0, tpa:0, tp:null,  ftm:1, fta:4, ft:25.0,  oreb:2, dreb:1, tov:3, pf:2, pm:6   },
-  { num:13, name:'V.Triggiani',   pos:'PF', min:'14:34', pts:3,  reb:4,  ast:1, stl:1, blk:0, fgm:1, fga:2,  fg:50.0,  tpm:0, tpa:2, tp:0.0,   ftm:1, fta:2, ft:50.0,  oreb:1, dreb:3, tov:0, pf:2, pm:11  },
-  { num:14, name:'A.Barra',       pos:'SF', min:'15:27', pts:5,  reb:1,  ast:0, stl:2, blk:0, fgm:1, fga:2,  fg:50.0,  tpm:1, tpa:6, tp:16.7,  ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:1, pf:3, pm:2   },
-  { num:15, name:'W.Bellinaso',   pos:'PF', min:'19:37', pts:3,  reb:2,  ast:3, stl:2, blk:0, fgm:0, fga:2,  fg:0.0,   tpm:1, tpa:3, tp:33.3,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:1, pf:2, pm:13  },
+  { num:13, name:'V.Triggiani',   pos:'PF', min:'14:34', pts:3,  reb:4,  ast:1, stl:1, blk:0, fgm:1, fga:4,  fg:25.0,  tpm:0, tpa:2, tp:0.0,   ftm:1, fta:2, ft:50.0,  oreb:1, dreb:3, tov:0, pf:2, pm:11  },
+  { num:14, name:'A.Barra',       pos:'SF', min:'15:27', pts:5,  reb:1,  ast:0, stl:2, blk:0, fgm:2, fga:8,  fg:25.0,  tpm:1, tpa:6, tp:16.7,  ftm:0, fta:0, ft:null,  oreb:0, dreb:1, tov:1, pf:3, pm:2   },
+  { num:15, name:'W.Bellinaso',   pos:'PF', min:'19:37', pts:3,  reb:2,  ast:3, stl:2, blk:0, fgm:1, fga:5,  fg:20.0,   tpm:1, tpa:3, tp:33.3,  ftm:0, fta:0, ft:null,  oreb:0, dreb:2, tov:1, pf:2, pm:13  },
   { num:16, name:'P.G.Abreu',     pos:'C',  min:'15:00', pts:11, reb:4,  ast:1, stl:0, blk:0, fgm:5, fga:6,  fg:83.3,  tpm:0, tpa:0, tp:null,  ftm:1, fta:4, ft:25.0,  oreb:3, dreb:1, tov:0, pf:1, pm:14  },
 ];
 
 // ── TOTALS ──
-const jpnTot = { pts:70, reb:28, ast:9, stl:8, blk:3, fgm:16, fga:29, fg:55.2, tpm:7, tpa:32, tp:21.9, ftm:17, fta:27, ft:63.0, oreb:6, dreb:22, tov:8, pf:17 };
-const itaTot = { pts:89, reb:41, ast:18, stl:6, blk:4, fgm:27, fga:42, fg:64.3, tpm:9, tpa:26, tp:34.6, ftm:8, fta:19, ft:42.1, oreb:11, dreb:30, tov:14, pf:19 };
+const jpnTot = { pts:70, reb:28, ast:9, stl:8, blk:3, fgm:23, fga:61, fg:37.7, tpm:7, tpa:32, tp:21.9, ftm:17, fta:27, ft:63.0, oreb:6, dreb:22, tov:8, pf:17 };
+const itaTot = { pts:89, reb:41, ast:18, stl:6, blk:4, fgm:36, fga:65, fg:55.4, tpm:9, tpa:26, tp:34.6, ftm:8, fta:19, ft:42.1, oreb:11, dreb:30, tov:14, pf:19 };
 
 // ── RENDER ──
 function totalsRow(tot) {

@@ -17,15 +17,15 @@
     --header-bg: #1A1A1A;
     --section-bg: #F0F0F0;
     --section-text: #555555;
-    --cell-h: 27px;
-    --sec-h: 22px;
+    --cell-h: 32px;
+    --sec-h: 24px;
     --fix-w: 135px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body {
     background: var(--bg);
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
     padding-bottom: 50px;
     min-height: 100vh;
   }
@@ -88,7 +88,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 40px; font-weight: 700; line-height: 1;
     color: white; letter-spacing: -0.02em;
-    flex-shrink: 0;
+    flex-shrink: 0; font-variant-numeric: tabular-nums;
   }
   .team-score.loser { color: rgba(255,255,255,0.45); }
   /* 中央: FINAL */
@@ -136,7 +136,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
     color: var(--text-dim); text-transform: uppercase;
-    padding: 6px 14px;
+    padding: 7px 12px;
     background: #FAFAFA;
     border-bottom: 1px solid var(--border);
   }
@@ -157,7 +157,7 @@
     font-size: 14px; font-weight: 600;
     color: var(--text-primary); text-align: center;
     padding: 7px 0; border-bottom: 1px solid var(--border);
-    border-right: 1px solid rgba(0,0,0,0.06);
+    border-right: 1px solid rgba(0,0,0,0.06); font-variant-numeric: tabular-nums;
   }
   .q-table tr:last-child td { border-bottom: none; }
   .q-table td:first-child { text-align: left; padding-left: 12px; font-size: 13px; border-right: 1px solid rgba(0,0,0,0.1); }
@@ -179,7 +179,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
     color: var(--text-dim); text-transform: uppercase;
-    padding: 6px 14px;
+    padding: 7px 12px;
     background: #FAFAFA;
     border-bottom: 1px solid var(--border);
   }
@@ -213,7 +213,7 @@
   }
   .sec-fix-inner {
     display: flex; align-items: center;
-    height: var(--sec-h); padding: 0 10px;
+    height: var(--sec-h); padding: 0 12px;
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 10px; font-weight: 700;
     color: var(--section-text);
@@ -222,7 +222,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
     color: var(--text-dim); text-align: right;
-    width: 38px; min-width: 38px;
+    width: 42px; min-width: 42px;
     padding-right: 5px;
   }
 
@@ -240,12 +240,12 @@
   /* Fixed cell inner layout */
   .fix-inner {
     display: flex; align-items: center; gap: 4px;
-    height: var(--cell-h); padding: 0 8px;
+    height: var(--cell-h); padding: 0 10px;
   }
   .p-num {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 11px; font-weight: 600; color: var(--text-dim);
-    min-width: 18px; flex-shrink: 0; text-align: center;
+    min-width: 18px; flex-shrink: 0; text-align: center; font-variant-numeric: tabular-nums;
   }
   .p-name {
     font-size: 11.5px; font-weight: 700;
@@ -262,14 +262,15 @@
   /* Stat cells */
   .s {
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 12px; font-weight: 600;
+    font-size: 12px; font-weight: 400;
     color: var(--text-primary); text-align: right;
-    width: 38px; min-width: 38px;
+    width: 42px; min-width: 42px;
     white-space: nowrap;
     vertical-align: middle;
     padding-right: 5px;
+    font-variant-numeric: tabular-nums;
   }
-  .s-pts { font-weight: 700; color: #111; }
+  .s-pts { font-weight: 500; color: #111; }
   .s-dim { color: #AAA; }
   .pm-p { color: #059669; }
   .pm-n { color: #CC0000; }
@@ -319,14 +320,14 @@
 
   /* ── TOTALS ROW ── */
   .totals-row td {
-    height: 28px;
+    height: 32px;
     background: #F7F7F7;
     border-top: 2px solid var(--border-dark);
   }
   .totals-row td.fix { background: #F7F7F7; z-index: 4; }
   .totals-fix-inner {
     display: flex; align-items: center;
-    height: 28px; padding: 0 8px;
+    height: 32px; padding: 0 8px;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
     color: var(--text-primary);
@@ -335,9 +336,9 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 12px; font-weight: 700;
     color: var(--text-primary); text-align: right;
-    width: 38px; min-width: 38px;
+    width: 42px; min-width: 42px;
     white-space: nowrap; vertical-align: middle;
-    padding-right: 5px;
+    padding-right: 5px; font-variant-numeric: tabular-nums;
   }
 
   /* ── RESPONSIVE: Tablet & PC ── */
@@ -346,7 +347,7 @@
     .box-wrap { margin: 10px 12px 0; border-radius: 8px; }
     .box-table { table-layout: auto; width: 100%; }
     .fix { min-width: var(--fix-w); max-width: var(--fix-w); }
-    .s, .s-tot { width: auto; min-width: 44px; font-size: 13px; padding-right: 8px; }
+    .s, .s-tot { width: auto; min-width: 44px; font-size: 13px; padding-right: 8px; font-variant-numeric: tabular-nums; }
     .sec-stat  { width: auto; min-width: 44px; font-size: 11px; padding-right: 8px; }
     .p-name { font-size: 13px; }
     .p-num  { font-size: 12px; min-width: 22px; }

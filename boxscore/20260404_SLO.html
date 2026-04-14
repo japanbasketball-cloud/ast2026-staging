@@ -132,6 +132,91 @@
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0,0,0,0.07);
   }
+  /* ── TEAM SUMMARY ── */
+  .summary-wrap {
+    background: var(--white);
+    margin: 10px 12px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .sm-head {
+    display: grid;
+    grid-template-columns: 1fr 90px 1fr;
+    align-items: center;
+    padding: 8px 14px;
+    background: #FAFAFA;
+    border-bottom: 1px solid var(--border);
+  }
+  .sm-head-team {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+  }
+  .sm-head-team.left  { text-align: right; padding-right: 8px; }
+  .sm-head-team.right { text-align: left;  padding-left: 8px; }
+  .sm-head-title {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .sm-row {
+    display: grid;
+    grid-template-columns: 1fr 90px 1fr;
+    align-items: center;
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sm-row:last-child { border-bottom: none; }
+
+  .sm-val {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px; font-weight: 500;
+    color: #B0B0B0;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .sm-val.left  { text-align: right; padding-right: 10px; }
+  .sm-val.right { text-align: left;  padding-left: 10px; }
+  .sm-val.win   { color: #111; font-weight: 700; }
+  .sm-pct {
+    font-size: 12px; font-weight: 500;
+    color: #B0B0B0; margin-left: 5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .sm-val.win .sm-pct { color: #555; }
+
+  .sm-label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .sm-bars {
+    grid-column: 1 / 4;
+    display: flex;
+    height: 3px;
+    margin-top: 10px;
+    border-radius: 2px;
+    overflow: hidden;
+    background: #F0F0F0;
+  }
+  .sm-bar-l, .sm-bar-r {
+    height: 100%;
+    background: #D8D8D8;
+    transition: width 0.3s ease;
+  }
+  .sm-bar-l.win, .sm-bar-r.win { background: #1A1A1A; }
+  .sm-bar-l { border-radius: 2px 0 0 2px; }
+  .sm-bar-r { border-radius: 0 2px 2px 0; }
+
   .section-title {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
@@ -150,7 +235,7 @@
     padding: 5px 0; border-bottom: 1px solid var(--border);
     border-right: 1px solid rgba(0,0,0,0.06);
   }
-  .q-table th:first-child { text-align: left; padding-left: 14px; width: 90px; border-right: 1px solid rgba(0,0,0,0.1); }
+  .q-table th:first-child { text-align: left; padding-left: 14px; width: 90px; border-right: 1px solid rgba(0,0,0,0.06); }
   .q-table th:last-child { border-right: none; }
   .q-table td {
     font-family: 'Roboto Condensed', sans-serif;
@@ -160,7 +245,7 @@
     border-right: 1px solid rgba(0,0,0,0.06); font-variant-numeric: tabular-nums;
   }
   .q-table tr:last-child td { border-bottom: none; }
-  .q-table td:first-child { text-align: left; padding-left: 12px; font-size: 13px; border-right: 1px solid rgba(0,0,0,0.1); }
+  .q-table td:first-child { text-align: left; padding-left: 12px; font-size: 13px; border-right: 1px solid rgba(0,0,0,0.06); }
   .q-table td:last-child { border-right: none; }
   .q-table td.total { font-size: 17px; font-weight: 700; }
   .q-table td.loser-score { color: rgba(0,0,0,0.35); }
@@ -198,8 +283,9 @@
   .fix {
     position: sticky; left: 0; z-index: 3;
     width: var(--fix-w); min-width: var(--fix-w);
-    border-right: 1px solid var(--border-dark);
+    border-right: 1px solid var(--border);
   }
+  .box-scroll.is-scrolled .fix { box-shadow: 2px 0 4px rgba(0,0,0,0.04); }
 
   /* Section header rows (先発・控え) */
   .sec-row td {
@@ -322,7 +408,7 @@
   .totals-row td {
     height: 32px;
     background: #F7F7F7;
-    border-top: 2px solid var(--border-dark);
+    border-top: 1px solid var(--border);
   }
   .totals-row td.fix { background: #F7F7F7; z-index: 4; }
   .totals-fix-inner {
@@ -435,6 +521,17 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- TEAM SUMMARY -->
+<div class="summary-wrap">
+  <div class="section-title">TEAM SUMMARY</div>
+  <div class="sm-head">
+    <span class="sm-head-team left">JPN</span>
+    <span class="sm-head-title">STATS</span>
+    <span class="sm-head-team right">SLO</span>
+  </div>
+  <div id="summary-body"></div>
 </div>
 
 <!-- BOX SCORE -->
@@ -598,6 +695,43 @@ function switchTeam(team, btn) {
 }
 
 render(jpnStarters, jpnBench, jpnTot);
+
+// ── TEAM SUMMARY ──
+function renderSummary() {
+  const A = jpnTot, B = sloTot;
+  const fmt = (m, a, p) => `${m}-${a} <span class="sm-pct">${p.toFixed(1)}%</span>`;
+  const rows = [
+    { label:'PTS',  l:A.pts, r:B.pts },
+    { label:'FG',   l:A.fg,  r:B.fg,  lDisp:fmt(A.fgm, A.fga, A.fg), rDisp:fmt(B.fgm, B.fga, B.fg) },
+    { label:'3-PT', l:A.tp,  r:B.tp,  lDisp:fmt(A.tpm, A.tpa, A.tp), rDisp:fmt(B.tpm, B.tpa, B.tp) },
+    { label:'FT',   l:A.ft,  r:B.ft,  lDisp:fmt(A.ftm, A.fta, A.ft), rDisp:fmt(B.ftm, B.fta, B.ft) },
+    { label:'REB',  l:A.reb, r:B.reb, lDisp:`${A.reb} <span class="sm-pct">${A.oreb}OR | ${A.dreb}DR</span>`, rDisp:`${B.reb} <span class="sm-pct">${B.oreb}OR | ${B.dreb}DR</span>` },
+    { label:'AST',  l:A.ast, r:B.ast },
+    { label:'STL',  l:A.stl, r:B.stl },
+    { label:'TOV',  l:A.tov, r:B.tov, lower:true },
+  ];
+  const html = rows.map(row => {
+    const leftWin  = row.lower ? row.l < row.r : row.l > row.r;
+    const rightWin = row.lower ? row.r < row.l : row.r > row.l;
+    const sum = (row.l + row.r) || 1;
+    const lW = (row.l / sum) * 100;
+    const rW = (row.r / sum) * 100;
+    const lDisp = row.lDisp !== undefined ? row.lDisp : row.l;
+    const rDisp = row.rDisp !== undefined ? row.rDisp : row.r;
+    return `<div class="sm-row">
+      <div class="sm-val left${leftWin ? ' win' : ''}">${lDisp}</div>
+      <div class="sm-label">${row.label}</div>
+      <div class="sm-val right${rightWin ? ' win' : ''}">${rDisp}</div>
+      <div class="sm-bars">
+        <div class="sm-bar-l${leftWin ? ' win' : ''}"  style="width:${lW}%"></div>
+        <div class="sm-bar-r${rightWin ? ' win' : ''}" style="width:${rW}%"></div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('summary-body').innerHTML = html;
+}
+renderSummary();
+
 </script>
 </body>
 </html>

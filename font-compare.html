@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Font比較 - AST2026 Boxscore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Archivo:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&family=Titillium+Web:wght@400;600;700&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px;
+    background: #0f1216;
+    color: #e8ecf1;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  h1 { font-size: 18px; margin: 0 0 8px; }
+  .note { color: #8892a0; font-size: 13px; margin-bottom: 20px; }
+  .card {
+    background: #171b22;
+    border: 1px solid #242a33;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .card h2 {
+    margin: 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #9aa4b2;
+    border-bottom: 1px solid #242a33;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .card h2 span { color: #6b7382; font-size: 11px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  th, td {
+    padding: 8px 6px;
+    text-align: right;
+    font-size: 14px;
+    border-bottom: 1px solid #1f242c;
+  }
+  th {
+    color: #6b7382;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  th:first-child, td:first-child {
+    text-align: left;
+    padding-left: 14px;
+    width: 140px;
+  }
+  td.num { width: 42px; font-weight: 400; }
+  td.pts { font-weight: 500; }
+  tr.total td { border-top: 1px solid #2a3038; font-weight: 500; color: #fff; background: #1b2028; }
+
+  .f-roboto-c { font-family: 'Roboto Condensed', sans-serif; }
+  .f-barlow-c { font-family: 'Barlow Condensed', sans-serif; }
+  .f-inter { font-family: 'Inter', sans-serif; }
+  .f-dm-sans { font-family: 'DM Sans', sans-serif; }
+  .f-ibm-plex { font-family: 'IBM Plex Sans', sans-serif; }
+  .f-roboto-mono { font-family: 'Roboto Mono', monospace; }
+  .f-jetbrains { font-family: 'JetBrains Mono', monospace; }
+  .f-archivo { font-family: 'Archivo', sans-serif; }
+  .f-hanken { font-family: 'Hanken Grotesk', sans-serif; }
+  .f-system { font-family: -apple-system, 'SF Pro Text', sans-serif; }
+  .f-oswald { font-family: 'Oswald', sans-serif; }
+  .f-titillium { font-family: 'Titillium Web', sans-serif; }
+  .f-exo2 { font-family: 'Exo 2', sans-serif; }
+  .f-barlow-c-600 { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; }
+  .f-roboto-c-600 { font-family: 'Roboto Condensed', sans-serif; font-weight: 600; }
+
+  .digit-row {
+    padding: 10px 14px;
+    font-size: 18px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #1f242c;
+    color: #cfd6e0;
+  }
+  .digit-row b { color: #fff; font-weight: 500; margin-left: 12px; }
+</style>
+</head>
+<body>
+
+<h1>フォント比較 - AST2026 Boxscore</h1>
+<p class="note">同じスコアデータを10種類のフォントで表示。数字幅の均一性・NBA.com風の印象・可読性を比較してください。</p>
+
+<!-- Template macro via repeated blocks -->
+<!-- 1 -->
+<div class="card">
+  <h2>① Roboto Condensed <span>（初期採用フォント）</span></h2>
+  <div class="digit-row f-roboto-c">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-roboto-c">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 2 -->
+<div class="card">
+  <h2>② Barlow Condensed</h2>
+  <div class="digit-row f-barlow-c">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-barlow-c">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 3 -->
+<div class="card">
+  <h2>③ Inter</h2>
+  <div class="digit-row f-inter">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-inter">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 4 -->
+<div class="card">
+  <h2>④ DM Sans</h2>
+  <div class="digit-row f-dm-sans">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-dm-sans">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 5 -->
+<div class="card">
+  <h2>⑤ IBM Plex Sans <span>（現在採用中）</span></h2>
+  <div class="digit-row f-ibm-plex">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-ibm-plex">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 6 -->
+<div class="card">
+  <h2>⑥ Roboto Mono <span>（等幅）</span></h2>
+  <div class="digit-row f-roboto-mono">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-roboto-mono">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 7 -->
+<div class="card">
+  <h2>⑦ JetBrains Mono <span>（等幅）</span></h2>
+  <div class="digit-row f-jetbrains">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-jetbrains">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 8 -->
+<div class="card">
+  <h2>⑧ Archivo <span>（NBA.com風）</span></h2>
+  <div class="digit-row f-archivo">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-archivo">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 9 -->
+<div class="card">
+  <h2>⑨ Hanken Grotesk</h2>
+  <div class="digit-row f-hanken">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-hanken">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 10 -->
+<div class="card">
+  <h2>⑩ System (SF Pro / -apple-system) <span>（iOS標準・NBA.comアプリ実体）</span></h2>
+  <div class="digit-row f-system">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-system">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 11 -->
+<div class="card">
+  <h2>⑪ Oswald <span>（condensed・中太）</span></h2>
+  <div class="digit-row f-oswald">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-oswald">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 12 -->
+<div class="card">
+  <h2>⑫ Titillium Web <span>（condensed系・中太）</span></h2>
+  <div class="digit-row f-titillium">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-titillium">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 13 -->
+<div class="card">
+  <h2>⑬ Barlow Condensed weight:600 <span>（②を太くしたもの）</span></h2>
+  <div class="digit-row f-barlow-c-600">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-barlow-c-600">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 14 -->
+<div class="card">
+  <h2>⑭ Roboto Condensed weight:600 <span>（①を太くしたもの）</span></h2>
+  <div class="digit-row f-roboto-c-600">0123456789 &nbsp; <b>11 18 38 88</b></div>
+  <table class="f-roboto-c-600">
+    <thead><tr><th>PLAYER</th><th>MIN</th><th>FG</th><th>3P</th><th>FT</th><th>REB</th><th>AST</th><th>STL</th><th>PTS</th></tr></thead>
+    <tbody>
+      <tr><td>選手 A</td><td class="num">28</td><td class="num">8-14</td><td class="num">2-5</td><td class="num">4-4</td><td class="num">7</td><td class="num">3</td><td class="num">1</td><td class="num pts">22</td></tr>
+      <tr><td>選手 B</td><td class="num">31</td><td class="num">5-11</td><td class="num">1-3</td><td class="num">6-8</td><td class="num">11</td><td class="num">2</td><td class="num">0</td><td class="num pts">17</td></tr>
+      <tr><td>選手 C</td><td class="num">18</td><td class="num">3-8</td><td class="num">0-1</td><td class="num">0-0</td><td class="num">4</td><td class="num">8</td><td class="num">2</td><td class="num pts">6</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">200</td><td class="num">28-62</td><td class="num">7-21</td><td class="num">11-14</td><td class="num">38</td><td class="num">18</td><td class="num">8</td><td class="num pts">74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="margin-top:24px;padding:16px;background:#171b22;border-radius:8px;font-size:13px;line-height:1.7;color:#cfd6e0;">
+<b style="color:#fff;">condensed系でNBA.comアプリに近いオススメ順:</b><br>
+<b>1位: ⑪ Oswald</b> — condensedで中太、数字幅均一、NBA.comアプリに最も近い印象<br>
+<b>2位: ⑬ Barlow Condensed w600</b> — ②を太くしたもの。細すぎず読みやすい<br>
+<b>3位: ⑭ Roboto Condensed w600</b> — ①を太くしたもの。安定感あり<br>
+<b>4位: ⑫ Titillium Web</b> — condensed寄りでやや個性的
+</div>
+
+</body>
+</html>
